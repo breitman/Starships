@@ -1,7 +1,7 @@
 const User = require('./user');
 const Ship = require('./ship');
 const Review = require('./review');
-// const Cart = require('./cart');
+const Cart = require('./cart');
 const Payment = require('./payment');
 const Sequelize = require('sequelize');
 const db = require('../db')
