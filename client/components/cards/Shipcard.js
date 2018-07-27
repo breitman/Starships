@@ -10,7 +10,7 @@ require('./style/shipCard.css')
 
 import React, { Component } from 'react'
 
-class Shipcard extends Component {
+class ShipCard extends Component {
 
 
   addingToCart(ship){
@@ -52,4 +52,4 @@ const mapDispatchToProps = dispatch =>{
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Shipcard)
+export default connect(mapStateToProps,mapDispatchToProps)(ShipCard)
