@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchShips } from '../../store/ship';
 import {putInCart} from '../../store/cart';
+import {me} from '../../store/user'
 require('./style/shipCard.css')
 
 
@@ -13,7 +14,8 @@ class Shipcard extends Component {
 
 
   addingToCart(ship){
-    this.props.putInCart(ship)
+    this.props.me()
+    this.props.putInCart(ship,this.props.user)
   }
 
   render() {
@@ -45,7 +47,8 @@ const mapStateToProps = state =>{
 
 const mapDispatchToProps = dispatch =>{
   return {
-    putInCart: (shipId) => dispatch(putInCart(shipId)),
+    putInCart: (shipId,user) => dispatch(putInCart(shipId,user.id)),
+    me : ()=> dispatch(me())
   }
 }
 
