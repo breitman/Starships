@@ -1,31 +1,61 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+
+import {removeShip} from '../../store/cart/thunk'
+
 require('./style/CartItems.css')
 class CartItems extends Component {
+  constructor(props){
+    super(props)
+    this.removeHandler = this.removeHandler.bind(this)
+  }
+  
+  removeHandler(evt) {
+    evt.preventDefault()
+   this.props.removeShip(this.props.ship.starship.id,this.props.userId)
+  }
+
   render() {
+    const ship = this.props.ship
+    const shipInfo = this.props.ship.starship
     return (
+      <div>
+        <hr />
       <div className='container-ships'>
       <div className='container-ships-item '>
         <div className='container-ships-img'>
-          <img src='http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png'/>
+          <img src={shipInfo.imageUrl}/>
         </div>
 
         <div className='container-ships-info '>
-          <p>Name: </p>
-          <p>Model: </p>
-          <p>manufacturer: </p>
+          <p>Name: {shipInfo.name}</p>
+          <p>Model: {shipInfo.model}</p>
+          <p>manufacturer: {shipInfo.manufacturer}</p>
         </div>
   
       </div>
       <div className='container-ships-price'>
-        <p> $20</p>
+        <p> ${shipInfo.price}</p>
       </div>
       <div className='container-ships-quantity'>
-        <p> hello</p>
+        <p> {ship.quantity}</p>
+      </div>
       </div>
 
+   
+        <div className='remove-btn'>
+        <button onClick={this.removeHandler} className="remove-button">Remove</button>
+        </div>
+        <hr />
       </div>
     )
   }
 }
 
-export default CartItems
+export const MapDispatchToProps = dispatch => {
+  return {
+    removeShip : (shipId,userId)=> (dispatch(removeShip(shipId,userId)))
+  }
+}
+
+export default  connect(null,MapDispatchToProps)(CartItems)

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchSingleShip } from '../../store/ship';
-import { addToCart } from '../../store/cart';
 
 const reviewList = (reviews) => {
   if (!reviews) {return <h2>There are no reviews registered in the database</h2>}
@@ -89,7 +88,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchSingleShip: shipId => (dispatch(fetchSingleShip(shipId))),
-    putInCart: (product) => dispatch(addToCart(product))
   }
 }
 
