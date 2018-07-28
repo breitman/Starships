@@ -11,7 +11,6 @@ class CartPage extends Component {
   this.props.getCart(this.props.user.id)
   }
 
-
   render() {
     const shipCount = (this.props.shipCount)
     const subtotal = (this.props.subtotal)
@@ -41,7 +40,7 @@ class CartPage extends Component {
             {
               Usercart.map((item,index)=>{
                 return (
-                  <CartItem key={index} ship={item}/>
+                  <CartItem userId={this.props.user.id} key={index} ship={item}/>
                 )
               })
             }
@@ -102,7 +101,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getCart : userId => (dispatch(getCart(userId))),
-    getSubtotal : userCart => (dispatch(getSubtotal(userCart)))
+    getSubtotal : userCart => (dispatch(getSubtotal(userCart))),
   }
 }
 

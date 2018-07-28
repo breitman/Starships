@@ -1,6 +1,20 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+
+import {removeShip} from '../../store/cart/thunk'
+
 require('./style/CartItems.css')
 class CartItems extends Component {
+  constructor(props){
+    super(props)
+    this.removeHandler = this.removeHandler.bind(this)
+  }
+  
+  removeHandler(evt) {
+    evt.preventDefault()
+   this.props.removeShip(this.props.ship.starship.id,this.props.userId)
+  }
+
   render() {
     const ship = this.props.ship
     const shipInfo = this.props.ship.starship
@@ -30,7 +44,7 @@ class CartItems extends Component {
 
    
         <div className='remove-btn'>
-        <button className="remove-button">Remove</button>
+        <button onClick={this.removeHandler} className="remove-button">Remove</button>
         </div>
         <hr />
       </div>
@@ -38,4 +52,10 @@ class CartItems extends Component {
   }
 }
 
-export default CartItems
+export const MapDispatchToProps = dispatch => {
+  return {
+    removeShip : (shipId,userId)=> (dispatch(removeShip(shipId,userId)))
+  }
+}
+
+export default  connect(null,MapDispatchToProps)(CartItems)

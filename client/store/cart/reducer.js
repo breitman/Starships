@@ -26,6 +26,9 @@ const initState = {
             case GET_SHIP_COUNT:
             return {...cartState, shipCount : action.payload}
 
+            case REMOVE_FROM_CART:
+            return {...cartState, cart : action.payload}
+
             default : 
             return cartState
         }
