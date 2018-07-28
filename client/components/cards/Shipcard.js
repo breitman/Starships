@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchShips } from '../../store/ship';
-import {putInCart} from '../../store/cart';
+import {putInCart} from '../../store/cart/thunk';
 import {me} from '../../store/user'
 require('./style/shipCard.css')
 

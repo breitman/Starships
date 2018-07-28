@@ -4,8 +4,15 @@ import React, { Component } from 'react'
 import CartItem from '../cards/CartItems'
 require('../style/cart.css')
 
- class CartPage extends Component {
+import {getCart} from '../../store/cart/thunk'
+
+class CartPage extends Component {
+  componentDidMount(){
+  this.props.getCart(this.props.user.id)
+  }
+
   render() {
+    const Usercart = this.props.cart
     return (
       <div className='cart'>
       <div className='products'>
@@ -28,7 +35,14 @@ require('../style/cart.css')
             <hr />
 
             <div className='ship-list '>
-                <CartItem />
+            {
+              Usercart.map((item,index)=>{
+                return (
+                  <CartItem key={index} ship={item}/>
+                )
+              })
+            }
+                {/* <CartItem /> */}
             </div>
 
 
@@ -64,7 +78,7 @@ require('../style/cart.css')
         </div>
 
         <div className='checkout'>
-        <button class="button button2">Checkout</button>
+        <button className="button button2">Checkout</button>
         </div>
         </div>
       </div>
@@ -74,41 +88,18 @@ require('../style/cart.css')
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    cart : state.cart,
+    user : state.user
+  }
+}
 
-// export default CartPage
-// const mapStateToProps = (state) => {
-//   let total = 0;
-//   const items = {};
-//   state.cart.forEach(product => {
-//     if (items.hasOwnProperty(product.id)) {
-//       items[product.id].quantity++;
-//     } else {
-//       items[product.id] = product;
-//       items[product.id].quantity = 1;
-//     }
-//     total += product.price;
-//   });
-//   return {items, total};
-// };
-
-// const Cart = connect(mapStateToProps, null)(CartPage);
-
-export default CartPage;
+const mapDispatchToProps = dispatch => {
+  return {
+    getCart : userid => (dispatch(getCart(userid)))
+  }
+}
 
 
-      {/* {Object.keys(props.items).length === 0
-        ? <div>Is empty :(</div>
-        : (
-          <div>
-          {Object.keys(props.items).map(productId => {
-            const item = props.items[productId];
-            return (
-              <div key={productId}>
-                {item.title} ({item.quantity})
-              </div>
-            );
-          })}
-          <p>Your total: ${(props.total / 100).toFixed(2)}</p>
-          </div>
-        )
-      } */}
+export default connect(mapStateToProps,mapDispatchToProps)(CartPage)
