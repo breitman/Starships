@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchShips } from '../../store/ship';
-import { addToCart } from '../../store/cart';
 import ShipCard from '../cards/ShipCard';
 
 //possibly want to render ship cards on this page instead
