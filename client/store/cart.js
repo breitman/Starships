@@ -1,5 +1,7 @@
 import axios from "axios";
 
+
+
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 
@@ -13,15 +15,17 @@ export const removeFromCart = productId => ({
   payload: productId
 });
 
-export const putInCart = (productId,userId) => {
+
+
+export const putInCart = (ship,user) => {
   return async dispatch => {
-    console.log("string from product "  + productId + " " + userId )
-    const res = await axios.post(`/api/cart/`,{
-      starshipId: productId,
-      userId: userId
+    console.log("string from product "  + ship + " " + user )
+    await axios.post('/api/cart',{
+      "starshipId" : ship,
+      "userId" : user
     })
-    // const res = await axios.put(`/api/userCart/${userId}`, {productId});
-    // dispatch(addToCart(res.data));
+    const {data} = await axios.get(`/api/cart/${user}`)
+    console.log(data)
   }
 }
 
