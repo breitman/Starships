@@ -11,7 +11,7 @@ import React, { Component } from 'react'
 
 class Navbar extends Component {
   componentDidMount(){
-  console.log(this.props.user)
+  
   }
   render() {
     console.log("this is count",this.props.shipCount)
