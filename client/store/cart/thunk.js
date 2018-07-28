@@ -45,7 +45,6 @@ import {addedToCart,
     export const getSubtotal = (userCart) => {
         return async dispatch => {
             //we can get total ships and subtotal
-            console.log("user info", userCart)
             let subtotal = 0
             let totalShipsCount = 0 
             userCart.forEach((ship)=>{
@@ -55,5 +54,13 @@ import {addedToCart,
             dispatch(gotSubtotal(subtotal))
             dispatch(gotShipCount(totalShipsCount))
             }
+    }
+
+    export const removeShip = (shipId,userId) =>{
+        return async dispatch => {
+            await axios.delete(`/api/cart/${userId}/${shipId}`)
+            const {data} = await axios.get(`/api/cart/${userId}`)
+            dispatch(removedFromCart(data))
+        }
     }
     

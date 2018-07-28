@@ -61,3 +61,19 @@ router.post('/',async(req,res,next)=>{
     next(error)
   }
 })
+
+router.delete('/:id/:shipid',async (req,res,next)=>{
+  try {
+    console.log('serverSide',req.params.id, req.params.shipid)
+    await Cart.destroy({
+      where : {
+        userId : req.params.id,
+        starshipId : req.params.shipid
+      }
+    })
+    res.json('removed')
+  } catch (error) {
+    next(error)
+  }
+
+})
