@@ -3,12 +3,18 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import {getCart} from '../store'
+
 require('./style/navbar.css')
 
 import React, { Component } from 'react'
 
 class Navbar extends Component {
+  componentDidMount(){
+  console.log(this.props.user)
+  }
   render() {
+    console.log("this is count",this.props.shipCount)
     return this.props.isLoggedIn ?
       <div className='navbar'>
         <ul>
@@ -39,7 +45,9 @@ class Navbar extends Component {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user : state.user,
+    shipCount : state.cart.shipCount
   }
 }
 
@@ -47,7 +55,8 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
-    }
+    },
+    getCart : userId => (dispatch(getCart(userId))),
   }
 }
 

@@ -4,14 +4,17 @@ import React, { Component } from 'react'
 import CartItem from '../cards/CartItems'
 require('../style/cart.css')
 
-import {getCart} from '../../store/cart/thunk'
+import {getCart, getSubtotal} from '../../store/cart/thunk'
 
 class CartPage extends Component {
   componentDidMount(){
   this.props.getCart(this.props.user.id)
   }
 
+
   render() {
+    const shipCount = (this.props.shipCount)
+    const subtotal = (this.props.subtotal)
     const Usercart = this.props.cart
     return (
       <div className='cart'>
@@ -42,7 +45,6 @@ class CartPage extends Component {
                 )
               })
             }
-                {/* <CartItem /> */}
             </div>
 
 
@@ -52,29 +54,29 @@ class CartPage extends Component {
       </div>
       <div className='total'>
         <div className='summary'>
-        <h3> Summary (1 item) </h3>
+        <h3> Summary ({shipCount} Ships) </h3>
 
 
         <div className='container'>
         <p className='inline-block'> Subtotal </p>
-        <p className='inline-block right'>$20</p>
+        <p className='inline-block right'>${subtotal}</p>
         </div>
 
         <div className='container'>
         <p className='inline-block'> Shipping </p>
-        <p className='inline-block right'>$20</p>
+        <p className='inline-block right'>$0</p>
         </div>
 
 
         <div className='container'>
         <p className='inline-block'> Est. Taxes </p>
-        <p className='inline-block right'>$20</p>
+        <p className='inline-block right'>$0</p>
         </div>
 
         <hr />
         <div className='container'>
         <p className='inline-block'><b>Total</b></p>
-        <p className='inline-block right'>$20</p>
+        <p className='inline-block right'>${subtotal}</p>
         </div>
 
         <div className='checkout'>
@@ -90,14 +92,17 @@ class CartPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    cart : state.cart,
-    user : state.user
+    cart : state.cart.cart,
+    user : state.user,
+    subtotal : state.cart.subtotal,
+    shipCount : state.cart.shipCount
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCart : userid => (dispatch(getCart(userid)))
+    getCart : userId => (dispatch(getCart(userId))),
+    getSubtotal : userCart => (dispatch(getSubtotal(userCart)))
   }
 }
 
