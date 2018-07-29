@@ -14,6 +14,9 @@ const initState = {
 
     const cartReducer = (cartState = initState, action) =>{
         switch(action.type){
+            case CHANGE_QUANTITY:
+            return {...cartState, cart : action.payload}
+
             case ADD_TO_CART:
             return {...cartState, cart : action.payload}
 

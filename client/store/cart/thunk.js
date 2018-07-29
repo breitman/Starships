@@ -9,16 +9,38 @@ import {addedToCart,
 
 } from './actionCreator'
 
+    export const changingQuantity = (shipId,userId,quantity) => {
+        return async dispatch => {
+            try {
+                if(userId){
+                    await axios.put(`/api/cart/${userId}`,{
+                        quantity,
+                        shipId
+                    })
+                    const {data} = await axios.get(`/api/cart/${userId}`)
+                    dispatch(changedQuantity(data))
+                }
+            } catch (error) {
+                next(error)
+            }
+        }
+    }
+
+
     export const putInCart = (ship,user) => {
         return async dispatch => {
             //first checks if there is a user logged in
-            if(user){
-                await axios.post('/api/cart',{
-                "starshipId" : ship,
-                "userId" : user
-                })
-                const {data} = await axios.get(`/api/cart/${user}`)
-            dispatch(addedToCart(data))
+            try {
+                if(user){
+                    await axios.post('/api/cart',{
+                    "starshipId" : ship,
+                    "userId" : user
+                    })
+                    const {data} = await axios.get(`/api/cart/${user}`)
+                dispatch(addedToCart(data))
+                }
+            } catch (error) {
+                console.log(error)
             }
 
         }
