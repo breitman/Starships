@@ -38,7 +38,7 @@ router.put('/:userId', async (req,res,next) => {
   } catch (error) { next (error) }
 });
 
-//im not sure what this code is doing
+
 router.put('/userCart/:userId', async (req,res,next) => {
   try {
     const findUser = await User.findById(req.params.userId);

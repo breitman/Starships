@@ -26,7 +26,7 @@ const updateUser = (payload) => ({type : UPDATE_USER, payload})
 export const updatingUser = (userId,userData) => async dispatch => { 
   try {
     console.log(userData)
-      // await axios.put('/api/users/')
+      await axios.put(`/api/users/${userId}`)
   } catch (error) {
       next(error)
   }
