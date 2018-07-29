@@ -26,7 +26,7 @@ class CartItems extends Component {
       this.setState({
         quantity : ''
       })
-      
+
     }else {
       alert(`Must input a number in quantity for: ${this.props.ship.starship.name}` )
     }
@@ -74,7 +74,7 @@ class CartItems extends Component {
       <p>Quantity: {ship.quantity}</p>
       <input name='quantity' value={this.state.quantity}/>
 
-        <button> Confirm </button>
+        <button> Confirm Quantity </button>
       </form>
       </div>
 
