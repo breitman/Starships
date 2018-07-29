@@ -9,6 +9,20 @@ import {addedToCart,
 
 } from './actionCreator'
 
+    const priceChanging = (data) => {
+        
+        let totalCount = 0 
+        let totalPrice = 0  
+        data.forEach((el)=>{
+            totalCount += el.quantity
+            totalPrice += el.quantity * el.starship.price
+        })
+        return {
+            totalCount,
+            totalPrice
+        }
+    }
+
     export const changingQuantity = (shipId,userId,quantity) => {
         return async dispatch => {
             try {
@@ -18,6 +32,9 @@ import {addedToCart,
                         shipId
                     })
                     const {data} = await axios.get(`/api/cart/${userId}`)
+                    const newSubTotal = priceChanging(data)
+                    dispatch(gotSubtotal(newSubTotal.totalPrice))
+                    dispatch(gotShipCount(newSubTotal.totalCount))
                     dispatch(changedQuantity(data))
                 }
             } catch (error) {
@@ -37,7 +54,8 @@ import {addedToCart,
                     "userId" : user
                     })
                     const {data} = await axios.get(`/api/cart/${user}`)
-                dispatch(addedToCart(data))
+                    await dispatch(addedToCart(data))
+                    await getSubtotal(user)
                 }
             } catch (error) {
                 console.log(error)
@@ -54,7 +72,7 @@ import {addedToCart,
                 let subtotal = 0
                 let totalShipsCount = 0 
                 data.forEach((ship)=>{
-                    subtotal += (ship.starship.price)
+                    subtotal += (ship.starship.price * ship.quantity)
                     totalShipsCount  += ship.quantity
                 })
                 dispatch(gotSubtotal(subtotal))
@@ -70,7 +88,7 @@ import {addedToCart,
             let subtotal = 0
             let totalShipsCount = 0 
             userCart.forEach((ship)=>{
-                totalShipsCount += (ship.starship.price)
+                totalShipsCount += (ship.starship.price * ship.quantity)
                 subtotal += ship.quantity
             })
             dispatch(gotSubtotal(subtotal))

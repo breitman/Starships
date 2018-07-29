@@ -14,12 +14,6 @@ class CartItems extends Component {
     this.onChangeHandler = this.onChangeHandler.bind(this)
     this.onSubmitHandler = this.onSubmitHandler.bind(this)
   }
-  componentDidMount(){
-    this.setState({
-      quantity : this.props.ship.quantity
-    })
-  }
-
   onSubmitHandler(evt){
     evt.preventDefault()
     if ((Number(this.state.quantity) % 1) === 0 ){
@@ -28,10 +22,16 @@ class CartItems extends Component {
       const shipId = this.props.ship.starship.id 
       
       this.props.changingQuantity(shipId,userId,quantity)
+
+      this.setState({
+        quantity : ''
+      })
+      
     }else {
       alert(`Must input a number in quantity for: ${this.props.ship.starship.name}` )
     }
   }
+
 
   onChangeHandler(evt){
     this.setState({
@@ -71,7 +71,9 @@ class CartItems extends Component {
       {/* user can change quantity */}
 
       <form onChange={this.onChangeHandler} onSubmit={this.onSubmitHandler}>
+      <p>Quantity: {ship.quantity}</p>
       <input name='quantity' value={this.state.quantity}/>
+
         <button> Confirm </button>
       </form>
       </div>
