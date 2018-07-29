@@ -24,7 +24,6 @@ require('../style/singleUser.css')
 
         onSubmitHandler(evt){
             evt.preventDefault()
-            console.log(this.state)
             this.props.updatingUser(this.props.user.id,this.state)
         }
         onChangeHandler(evt){
