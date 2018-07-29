@@ -12,12 +12,13 @@ class CartItems extends Component {
   
   removeHandler(evt) {
     evt.preventDefault()
-   this.props.removeShip(this.props.ship.starship.id,this.props.userId)
+    this.props.removeShip(this.props.ship.starship.id,this.props.userId)
   }
 
   render() {
     const ship = this.props.ship
     const shipInfo = this.props.ship.starship
+    
     return (
       <div>
         <hr />
@@ -42,7 +43,6 @@ class CartItems extends Component {
       </div>
       </div>
 
-   
         <div className='remove-btn'>
         <button onClick={this.removeHandler} className="remove-button">Remove</button>
         </div>
@@ -54,8 +54,8 @@ class CartItems extends Component {
 
 export const MapDispatchToProps = dispatch => {
   return {
-    removeShip : (shipId,userId)=> (dispatch(removeShip(shipId,userId)))
+    removeShip : (shipId, userId) => (dispatch(removeShip(shipId, userId)))
   }
 }
 
-export default  connect(null,MapDispatchToProps)(CartItems)
+export default connect(null, MapDispatchToProps)(CartItems);

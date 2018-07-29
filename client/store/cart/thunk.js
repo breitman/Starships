@@ -9,7 +9,7 @@ import {addedToCart,
 
 } from './actionCreator'
 
-    export const putInCart = (ship,user) => {
+    export const putInCart = (ship, user) => {
         return async dispatch => {
             //first checks if there is a user logged in
             if(user){
