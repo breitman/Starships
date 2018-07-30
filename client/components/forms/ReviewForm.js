@@ -32,10 +32,10 @@ class ReviewForm extends React.Component {
           <label>
             <label htmlFor="content">Review content:</label>
             <input name="content" type = "text" value = {this.state.content || ''} onChange={this.handleInputChange} />
-            <label htmlFor="rate">Review rate:</label>
+            <label htmlFor="rate">Review rate (0-5):</label>
             <input name="rate" type = "text" value = {this.state.rate || ''} onChange={this.handleInputChange} />
             <h1>{!this.state.content ? "name required": "name is done"}</h1>
-            <h1>{!this.state.rate ? "rate required": "rate is done"}</h1>
+            <h1>{!(this.state.rate < 5 ) ? "rate should be 0-5": "rate is required"}</h1>
             <button type="submit">Add review</button>
           </label>
         </form>

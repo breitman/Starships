@@ -2,15 +2,12 @@ import axios from 'axios';
 
 const GET_REVIEWS = 'GET_REVIEWS';
 const ADD_REVIEWS = 'ADD_REVIEW';
-
-const GET_SINGLE_REVIEW = 'GET_SINGLE_REVIEW';
 const DELETE_REVIEW = 'DELETE_REVIEW';
 export const START_LOADING = 'START_LOADING';
 
 //action creators
 export const getReviews = reviews => ({type: GET_REVIEWS, payload: reviews });
-export const deleteReview = Review => ({ type: DELETE_REVIEW, payload: Review });
-export const getSingleReview = singleReview => ({ type: GET_SINGLE_REVIEW, payload: singleReview });
+export const deleteReview = review => ({ type: DELETE_REVIEW, payload: review });
 export const startLoading = () => ({ type: START_LOADING });
 export const addReview = (REVIEW) => ({
   type: ADD_REVIEWS,
@@ -33,9 +30,19 @@ export const addReviews = (reviewData, ownProps) => async (dispatch) => {
   }
 }
 
+export const deleteSingleReview = (reviewId) => async (dispatch) => {
+
+  try {
+    const response = await axios.delete(`/api/reviews/${reviewId}`)
+    return dispatch(deleteReview(response.data))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 const initialState = {
   reviews: [],
-  singleReview: {},
+  review: {},
   isLoading: false
 }
 
@@ -52,12 +59,12 @@ const reviewReducer = (state = initialState, action) => {
         ...state,
         reviews: action.payload
       }
-    case GET_SINGLE_REVIEW:
+    case DELETE_REVIEW:
       return {
         ...state,
-        singleReview: action.payload,
-        isLoading: false
-      };
+        review: action.payload
+      }
+
     case START_LOADING:
       return {
         ...state,

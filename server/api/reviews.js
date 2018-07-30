@@ -25,3 +25,16 @@ router.post('/:id', async (req, res, next) => {
     console.error(error)
   }
 })
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const deleteReview = await Review.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.json(deleteReview)
+  } catch (error) {
+    console.error(error)
+  }
+})
