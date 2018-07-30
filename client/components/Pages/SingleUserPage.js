@@ -24,8 +24,12 @@ require('../style/singleUser.css')
 
         onSubmitHandler(evt){
             evt.preventDefault()
-            console.log(this.state)
             this.props.updatingUser(this.props.user.id,this.state)
+            
+            function delayedAlert() {
+                var timeoutID = window.setTimeout(window.alert, 1000, 'Data Saved!');
+            }
+            delayedAlert()
         }
         onChangeHandler(evt){
             this.setState({
