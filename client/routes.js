@@ -17,6 +17,8 @@ import SingleShipPage from './components/Pages/SingleShipPage'
 import AddReview from './components/forms/AddReview'
 import HomePage from './components/Pages/HomePage';
 
+import CheckoutForm from './components/Pages/Checkout';
+
 //Profile
 import SingleUserPage from './components/Pages/SingleUserPage'
 /**
@@ -46,7 +48,7 @@ class Routes extends Component {
             <Route exact path='/starships/:id' component={SingleShipPage}/>
             <Route exact path='/starships/:id/addreview' component={AddReview}/>
             <Route path="/cart" component={CartPage} />
-            <Route path='/checkout' component={Checkout} />
+            <Route path='/checkout' component={CheckoutForm} />
           </Switch>
         )}
 
