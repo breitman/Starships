@@ -43,8 +43,8 @@ import {addedToCart,
         }
     }
 
-
-    export const putInCart = (ship,user) => {
+// can we set quantity here by including it as a parameter
+    export const putInCart = (ship, user) => {
         return async dispatch => {
             //first checks if there is a user logged in
             try {

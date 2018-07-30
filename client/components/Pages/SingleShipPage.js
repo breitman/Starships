@@ -42,9 +42,9 @@ class SingleShipPage extends Component {
     this.props.fetchSingleShip(id);
   }
 
- async onSubmitHandler(evt){
+  async onSubmitHandler(evt){
     evt.preventDefault()
-    await this.props.putInCart(this.props.singleShip.id,this.props.user.id)
+    await this.props.putInCart(this.props.singleShip.id, this.props.user.id)
     // await this.props.changingQuantity(this.props.singleShip.id,this.user.id,this.state.quantity)
 
   }
@@ -54,7 +54,7 @@ class SingleShipPage extends Component {
       this.setState({
         isNum : false
       })
-    }else {
+    } else {
       this.setState({
         isNum:true,
         quantity : Number(evt.target.value)
