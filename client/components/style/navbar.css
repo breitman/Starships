@@ -4,6 +4,7 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    position: relative;
 }
 
 li {
@@ -13,6 +14,21 @@ li {
 .right {
 	float: right;
 }
+
+.logout {
+    border: none;
+    /* background: none!important; */
+    display: inline-block;
+    background-color: #333;
+    color: white;
+    font:inherit;
+    text-align: center;
+    padding: 14px 16px;
+}
+
+/* .logout button:hover{
+    background-color: #111;
+} */
 
 li a {
     display: block;
@@ -36,32 +52,41 @@ li a:hover {
 }
 
 .dropdown {
-    position: relative;
-    display: inline-block;
+    display: block;
+    color: white;
+    position: absolute;
+    text-align: center;
 }
 
 .dropdown-content {
     display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    position: absolute;
+    z-index: -1;
+    overflow: visible;
 }
 
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
+    color: white;
     text-decoration: none;
     display: block;
+    position: absolute;
+    overflow: visible;
 }
-
-.dropdown-content a:hover {background-color: #f1f1f1}
+/*
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    position: absolute;
+}
 
 .dropdown:hover .dropdown-content {
     display: block;
+    overflow: visible;
+    position: absolute;
 }
 
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
-}
+    overflow: visible;
+    position: absolute;
+} */
