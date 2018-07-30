@@ -10,9 +10,9 @@ import {addedToCart,
 } from './actionCreator'
 
     const priceChanging = (data) => {
-        
-        let totalCount = 0 
-        let totalPrice = 0  
+
+        let totalCount = 0
+        let totalPrice = 0
         data.forEach((el)=>{
             totalCount += el.quantity
             totalPrice += el.quantity * el.starship.price
@@ -39,6 +39,19 @@ import {addedToCart,
                 }
             } catch (error) {
                 next(error)
+            }
+        }
+    }
+
+    export const getCartCount = (userId) =>{
+        return async dispatch => {
+            try{
+                const {data} = await axios.get(`/api/cart/${userId}`)
+                const newSubTotal = priceChanging(data)
+                dispatch(gotShipCount(newSubTotal.totalCount))
+            }
+            catch(error){
+               console.log(error)
             }
         }
     }
@@ -71,7 +84,7 @@ import {addedToCart,
                 const {data} = await axios.get(`/api/cart/${userId}`)
                 dispatch(gotCart(data))
                 let subtotal = 0
-                let totalShipsCount = 0 
+                let totalShipsCount = 0
                 data.forEach((ship)=>{
                     subtotal += (ship.starship.price * ship.quantity)
                     totalShipsCount  += ship.quantity
@@ -87,7 +100,7 @@ import {addedToCart,
         return async dispatch => {
             //we can get total ships and subtotal
             let subtotal = 0
-            let totalShipsCount = 0 
+            let totalShipsCount = 0
             userCart.forEach((ship)=>{
                 totalShipsCount += (ship.starship.price * ship.quantity)
                 subtotal += ship.quantity
@@ -104,4 +117,3 @@ import {addedToCart,
             dispatch(removedFromCart(data))
         }
     }
-    

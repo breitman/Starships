@@ -15,21 +15,19 @@ li {
 }
 
 .logout {
-    display: inline-block;
+    border: none;
     background: none!important;
+    display: inline-block;
     background-color: #333;
     color: white;
-    border: none;
     font:inherit;
     text-align: center;
     padding: 14px 16px;
-    text-decoration: none;
-    cursor: pointer;
 }
 
-.logout button:hover{
+/* .logout button:hover{
     background-color: #111;
-}
+} */
 
 li a {
     display: block;
