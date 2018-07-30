@@ -44,9 +44,8 @@ class SingleShipPage extends Component {
 
  async onSubmitHandler(evt){
     evt.preventDefault()
-    await this.props.putInCart(this.props.singleShip.id,this.props.user.id)
+    await this.props.putInCart(this.props.singleShip.id,this.props.user.id,this.state.quantity)
     // await this.props.changingQuantity(this.props.singleShip.id,this.user.id,this.state.quantity)
-
   }
 
   onChangeHandler(evt){
@@ -157,9 +156,9 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchSingleShip: shipId => (dispatch(fetchSingleShip(shipId))),
 
-    putInCart : (shipId,userId)=> (dispatch(putInCart(shipId,userId))),
+    putInCart : (shipId,userId,quantity)=> (dispatch(putInCart(shipId,userId,quantity))),
 
-    changingQuantity : (shipId,userId,quantity)=>(dispatch(changingQuantity(shipId,userId,quantity)))
+    // changingQuantity : (shipId,userId,quantity)=>(dispatch(changingQuantity(shipId,userId,quantity)))
   }
 
 }

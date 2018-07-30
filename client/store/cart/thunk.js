@@ -44,14 +44,15 @@ import {addedToCart,
     }
 
 
-    export const putInCart = (ship,user) => {
+    export const putInCart = (ship,user,quantity=0) => {
         return async dispatch => {
             //first checks if there is a user logged in
             try {
                 if(user){
                     await axios.post('/api/cart',{
                     "starshipId" : ship,
-                    "userId" : user
+                    "userId" : user,
+                    "quantity": quantity
                     })
                     const {data} = await axios.get(`/api/cart/${user}`)
                     await dispatch(addedToCart(data))
