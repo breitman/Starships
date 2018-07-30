@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { logout } from '../store'
 import { getCart, getCartCount } from '../store/cart/thunk'
 import { me } from '../store/user'
-import {DropDown, Menu} from 'semantic-ui-react'
+import {Dropdown, Menu} from 'semantic-ui-react'
 
 require('./style/navbar.css')
 
@@ -34,9 +34,20 @@ class Navbar extends Component {
           <li><Link className="active" to="/home">Home</Link></li>
           <li><Link to="/starships">All Ships</Link></li>
           <li className='logout'><button type='submit' onClick={this.props.handleClick}>Logout</button></li>
-          {/* <DropDown text='Account'/> */}
+          {/* <Menu>
+            <Menu.Item as={Link} to='/home'>Home</Menu.Item>
+            <Menu.Item as ={Link} to='/starships'>All Ships</Menu.Item>
+            <Dropdown icon='user' text='Account' className='link item'>
+              <Dropdown.Menu>
+                <Dropdown.Item as={Link} text='Settings' to='/account' />
+                <Dropdown.Item text='Wish List' as={Link} to='/wishlist'/>
+                <Dropdown.Item as='button' onClick={this.props.handleClick} text='logout' />
+              </Dropdown.Menu>
+            </Dropdown>
+            <Menu.Item as ={Link} to='/cart'>Cart</Menu.Item>
+          </Menu> */}
           <li className='right'><Link to="/account">Account Setting</Link></li>
-          <li className='right'><Link to="/cart">Cart (0)</Link></li>
+          <li className='right'><Link to="/cart">Cart</Link></li>
           <li className='right'><Link to="/wishlist">Wish List</Link></li>
         </ul>
       </div>
