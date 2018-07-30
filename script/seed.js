@@ -16,6 +16,38 @@ const {Ship, User} = require('../server/db/models')
  */
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const ships = [{
   name: "Executor",
   model: "Executor-class star dreadnought",
