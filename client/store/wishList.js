@@ -8,7 +8,7 @@ export const DELETE_WISH = 'DELETE_WISH';
 //action creators
 export const fetchWishList = wishes => ({ type: GET_WISH_LIST, payload: wishes });
 
-export const addToWishList = wishes => ({ type: ADD_TO_WISH_LIST, payload: wishes });
+export const addToWishList = wish => ({ type: ADD_TO_WISH_LIST, payload: wish });
 
 export const deleteWish = shipId => ({ type: DELETE_WISH, payload: shipId });
 
@@ -46,7 +46,7 @@ const wishReducer = (wishState = [], action) => {
     case ADD_TO_WISH_LIST:
       return [...wishState, action.payload];
     case DELETE_WISH:
-      return wishState.filter(wish => {})
+      return wishState.filter(ship => ship.id !== action.payload);
     default:
       return wishState;
   }

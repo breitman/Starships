@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { fetchShips } from '../../store/ship';
 import {putInCart} from '../../store/cart/thunk';
 import {me} from '../../store/user';
-import {putInWishList} from '../../store/wishList';
+import {addWish} from '../../store/wishList';
 require('./style/shipCard.css')
 
 
@@ -58,7 +58,7 @@ const mapDispatchToProps = dispatch =>{
   return {
     putInCart: (shipId, user) => dispatch(putInCart(shipId, user.id)),
     me : ()=> dispatch(me()),
-    putInWishList: (shipId, user) => dispatch(putInWishList(shipId, user.id))
+    putInWishList: (shipId, user) => dispatch(addWish(shipId, user.id))
   }
 }
 

@@ -2,8 +2,7 @@
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout} from '../store'
-import {getCart} from '../store'
+import {logout, getCart} from '../store'
 
 require('./style/navbar.css')
 
@@ -24,6 +23,7 @@ class Navbar extends Component {
           <li><button type='submit' onClick={this.props.handleClick}>Logout</button></li>
           <li className='right'><Link to="/account">Account</Link></li>
           <li className='right'><Link to="/cart">Cart (0)</Link></li>
+          <li className='right'><Link to="/wishlist">Wish List</Link></li>
         </ul>
       </div>
       :

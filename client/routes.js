@@ -15,10 +15,7 @@ import Checkout from './components/Pages/Checkout'
 // import SingleUserPage from './components/Pages/SingleUserPage'
 import SingleShipPage from './components/Pages/SingleShipPage'
 import AddReview from './components/forms/AddReview'
-
 import HomePage from './components/Pages/HomePage';
-//import Cart from './components/Pages/Cart'
-//Checkout, SingleUserPage,
 
 /**
  * COMPONENT
