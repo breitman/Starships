@@ -2,24 +2,30 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchSingleShip } from '../../store/ship';
+import { deleteSingleReview } from '../../store/review';
 import {putInCart, changingQuantity} from '../../store/cart/thunk'
 require('../style/singleShip.css')
 
-const reviewList = (reviews) => {
+const reviewList = (reviews, props) => {
   if (!reviews) {return <h2>There are no reviews registered in the database</h2>}
-  //ternary is not working, fix it later. (if student.campus.name === 'null')
   return reviews.map(review => (
     <div key={review.id}>
-
+      <ul>
       <li>
-        {/* We should fix this because it must need authority*/}
-        <Link to={`/starships/${review.starshipId}/${review.id}`}>
-          <p>Edit review</p>
-        </Link>
         <h3>reviewer: {review.userId}</h3>
         <p>review content: {review.content}</p>
         <p>review rate: {review.rate}</p>
+        { 
+          !(props.user.id === review.userId)? <div></div>
+          :(<div>
+          {console.log(props.user.id === review.id)}
+            <button type="submit" onClick={() => props.deleteReview(review.id)}>
+                delete this review
+            </button> 
+          </div>)}
       </li>
+      </ul>
+      
     
   </div>
     ))
@@ -63,7 +69,6 @@ class SingleShipPage extends Component {
 
   render() {
     const singleShip = this.props.singleShip;
-    console.log(this.props.user)
     return (
       <div>
         {/* <h3>{singleShip.name}</h3>
@@ -131,7 +136,7 @@ class SingleShipPage extends Component {
         <div>
         <h1>Reviews</h1>
           <ul>
-            {reviewList(singleShip.reviews)}
+            {reviewList(singleShip.reviews, this.props)}
           </ul>
         <Link to={`/starships/${singleShip.id}/addreview`}>
           <p>Add review</p>
@@ -157,7 +162,7 @@ const mapDispatchToProps = dispatch => {
     fetchSingleShip: shipId => (dispatch(fetchSingleShip(shipId))),
 
     putInCart : (shipId,userId,quantity)=> (dispatch(putInCart(shipId,userId,quantity))),
-
+    deleteReview: (reviewId) => dispatch(deleteSingleReview(reviewId))
     // changingQuantity : (shipId,userId,quantity)=>(dispatch(changingQuantity(shipId,userId,quantity)))
   }
 
