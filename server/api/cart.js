@@ -49,14 +49,14 @@ router.post('/',async(req,res,next)=>{
       if(usersCart.starshipId === req.body.starshipId){
         //If it is the same start ship that the user is adding the same ship we just need to add one to quantity
       const response =  await Cart.update({
-          quantity : usersCart.quantity + 1
+          quantity : (req.body.quantity ? req.body.quantity : usersCart.quantity + 1)
         },{
           where : {userId: req.body.userId, starshipId: req.body.starshipId}
         })
         res.json(response)
       }else {
       const newShip = await Cart.create({
-        quantity : 1,
+        quantity : req.body.quantity ? req.body.quantity : 1,
         userId : req.body.userId,
         starshipId : req.body.starshipId
       })
@@ -65,7 +65,7 @@ router.post('/',async(req,res,next)=>{
       //If User is adding a new Item we create a new Cart for the item
     }else {
       const response = await Cart.create({
-        quantity : 1,
+        quantity : (req.body.quantity > 0 ? req.body.quantity : 1),
         userId : req.body.userId,
         starshipId : req.body.starshipId
       })
@@ -73,7 +73,7 @@ router.post('/',async(req,res,next)=>{
     }
   } catch (error) {
     next(error)
-  }
+  } 
 })
 
 router.delete('/:id/:shipid',async (req,res,next)=>{
