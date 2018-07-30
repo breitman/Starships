@@ -7,10 +7,13 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user';
 import ship from './ship';
 import review from './review';
-import cart from './cart/reducer'
+import cart from './cart/reducer';
+import wishReducer from './wishList';
 
 const reducer = combineReducers({
-  user, ship, review, cart, session: sessionReducer
+  
+  user, ship, review, cart, wishReducer, session: sessionReducer
+
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

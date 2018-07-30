@@ -10,14 +10,14 @@ import {me} from './store'
 // import EditReview from './components/Pages/EditReview'
 import ShipList from './components/Pages/ShipList'
 import CartPage from './components/Pages/CartPage'
+import WishListPage from './components/Pages/WishListPage'
 import Checkout from './components/Pages/Checkout'
 // import SingleUserPage from './components/Pages/SingleUserPage'
 import SingleShipPage from './components/Pages/SingleShipPage'
 import AddReview from './components/forms/AddReview'
-
 import HomePage from './components/Pages/HomePage';
-//import Cart from './components/Pages/Cart'
-//Checkout, SingleUserPage,
+
+import CheckoutForm from './components/Pages/Checkout';
 
 //Profile
 import SingleUserPage from './components/Pages/SingleUserPage'
@@ -51,7 +51,7 @@ class Routes extends Component {
             <Route exact path='/starships/:id' component={SingleShipPage}/>
             <Route exact path='/starships/:id/addreview' component={AddReview}/>
             <Route path="/cart" component={CartPage} />
-            <Route path='/checkout' component={Checkout} />
+            <Route path='/checkout' component={CheckoutForm} />
           </Switch>
         )}
 
@@ -59,6 +59,7 @@ class Routes extends Component {
         <Switch>
           <Route exact path="/home" component={HomePage} />
           <Route path='/users/:userId' component={UserHome} />
+          <Route path='/wishlist' component={WishListPage} />
         </Switch>
         {/* Displays our Login component as a fallback */}
         <Redirect to= '/home'/>

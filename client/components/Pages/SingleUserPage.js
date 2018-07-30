@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {me,updatingUser} from '../../store/user'
 require('../style/singleUser.css')
 
- class SingleUserPage extends Component {
+class SingleUserPage extends Component {
         constructor(props){
             super(props)
             this.state ={

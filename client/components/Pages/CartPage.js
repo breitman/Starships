@@ -1,14 +1,13 @@
-
 import { connect } from 'react-redux';
 import React, { Component } from 'react'
 import CartItem from '../cards/CartItems'
+import {getCart, getSubtotal} from '../../store/cart/thunk'
 require('../style/cart.css')
 
-import {getCart, getSubtotal} from '../../store/cart/thunk'
-
 class CartPage extends Component {
-  componentDidMount(){
-  this.props.getCart(this.props.user.id)
+
+  componentDidMount() {
+    this.props.getCart(this.props.user.id)
   }
 
   render() {
@@ -106,4 +105,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(CartPage)
+export default connect(mapStateToProps, mapDispatchToProps)(CartPage)
