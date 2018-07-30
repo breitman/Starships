@@ -49,8 +49,8 @@ router.post('/', async (req,res,next) => {
         //If it is the same start ship that the user is adding the same ship we just need to add one to quantity
         // do we need the where here??? isnt the cart already specified. 
       const response =  await Cart.update({
-          quantity : usersCart.quantity + 1
-        }, {
+          quantity : (req.body.quantity ? req.body.quantity : usersCart.quantity + 1)
+        },{
           where : {userId: req.body.userId, starshipId: req.body.starshipId}
         });
         res.json(response);
@@ -60,7 +60,7 @@ router.post('/', async (req,res,next) => {
         //below we have the same code twice sending different name responses ???
 
       const newShip = await Cart.create({
-        quantity : 1,
+        quantity : req.body.quantity ? req.body.quantity : 1,
         userId : req.body.userId,
         starshipId : req.body.starshipId
       });
@@ -70,14 +70,16 @@ router.post('/', async (req,res,next) => {
     } else {
 
       const response = await Cart.create({
-        quantity : 1,
+        quantity : (req.body.quantity > 0 ? req.body.quantity : 1),
         userId : req.body.userId,
         starshipId : req.body.starshipId
       });
       res.json(response);
     }
-  } catch (error) { next(error) }
-});
+  } catch (error) {
+    next(error)
+  } 
+})
 
 router.delete('/:id/:shipid', async (req, res, next) => {
   try {
