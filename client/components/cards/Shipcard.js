@@ -39,6 +39,7 @@ class ShipCard extends Component {
               <button onClick={() => this.addingToCart(ship.id)} className="button button2">
                 Add to cart
               </button>
+              
 
               <button onClick={() => this.addingToWishList(ship.id)} className="button button2">
                 Add to wishlist
