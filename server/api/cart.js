@@ -17,7 +17,21 @@ router.get('/:id', async (req, res, next) => {
   } catch (error) { next(error) }
 });
 
-router.post('/', async (req, res, next) => {
+//changing quantity
+router.put('/:userId', async (req,res,next)=>{
+  console.log(req.body)
+  await Cart.update({
+    quantity : req.body.quantity,
+  },
+  {    where : {
+    userId : req.params.userId,
+    starshipId : req.body.shipId
+  }}
+)
+  res.json('updated')
+})
+
+router.post('/',async(req,res,next)=>{
   try {
     // getting User information
     const usersCart = await Cart.findOne({
@@ -38,7 +52,7 @@ router.post('/', async (req, res, next) => {
         })
         res.json(response)
       } else {
-        const newShip = await Cart.create({
+      const newShip = await Cart.create({
         quantity : 1,
         userId : req.body.userId,
         starshipId : req.body.starshipId

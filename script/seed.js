@@ -20,61 +20,61 @@ const ships = [{
   name: "Executor",
   model: "Executor-class star dreadnought",
   manufacturer: "Kuat Drive Yards, Fondor Shipyards",
-  price: 1143350000,
+  price: 400,
   isFeatured: true
   },
   {
     name: "Death Star",
     model: "DS-1 Orbital Battle Station",
     manufacturer: "Imperial Department of Military Research, Sienar Fleet Systems",
-    price: 1000000000000,
+    price: 8000,
     isFeatured: true
   },
   {
     name: "Millennium Falcon",
     model: "YT-1300 light freighter",
     manufacturer: "Corellian Engineering Corporation",
-    price: 100000,
+    price: 700,
     isFeatured: true
   },
   {
     name: "Y-wing",
     model: "BTL Y-wing",
     manufacturer: "Koensayr Manufacturing",
-    price: 134999,
+    price: 140,
   },
   {
     name: "X-wing",
     model: "T-65 X-wing",
     manufacturer: "Incom Corporation",
-    price: 149999,
+    price: 900,
   },
   {
     name: "Slave 1",
     model: "Firespray-31-class patrol and attack",
     manufacturer: "Kuat Systems Engineering",
-    price: 13457,
+    price: 457,
   },
   {
     name: "Imperial shuttle",
     model: "Lambda-class T-4a shuttle",
     manufacturer: "Sienar Fleet Systems",
-    price: 240000,
+    price: 172,
   },
   {
     name: "EF76 Nebulon-B escort frigate",
     model: "EF76 Nebulon-B escort frigate",
     manufacturer: "Kuat Drive Yards",
-    price: 8500000,
+    price: 850,
   },
   {
     name: "TIE Advanced x1",
     model: "Twin Ion Engine Advanced x1",
     manufacturer: "Sienar Fleet Systems",
-    price: 738462,
+    price: 730,
   },
 ]
-//whats god
+//whats good
 
 async function seed() {
   await db.sync({force: true})

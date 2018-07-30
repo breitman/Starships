@@ -9,16 +9,56 @@ import {addedToCart,
 
 } from './actionCreator'
 
-    export const putInCart = (ship, user) => {
+    const priceChanging = (data) => {
+        
+        let totalCount = 0 
+        let totalPrice = 0  
+        data.forEach((el)=>{
+            totalCount += el.quantity
+            totalPrice += el.quantity * el.starship.price
+        })
+        return {
+            totalCount,
+            totalPrice
+        }
+    }
+
+    export const changingQuantity = (shipId,userId,quantity) => {
+        return async dispatch => {
+            try {
+                if(userId){
+                    await axios.put(`/api/cart/${userId}`,{
+                        quantity,
+                        shipId
+                    })
+                    const {data} = await axios.get(`/api/cart/${userId}`)
+                    const newSubTotal = priceChanging(data)
+                    dispatch(gotSubtotal(newSubTotal.totalPrice))
+                    dispatch(gotShipCount(newSubTotal.totalCount))
+                    dispatch(changedQuantity(data))
+                }
+            } catch (error) {
+                next(error)
+            }
+        }
+    }
+
+
+    export const putInCart = (ship,user) => {
         return async dispatch => {
             //first checks if there is a user logged in
-            if(user){
-                await axios.post('/api/cart',{
-                "starshipId" : ship,
-                "userId" : user
-                })
-                const {data} = await axios.get(`/api/cart/${user}`)
-            dispatch(addedToCart(data))
+            try {
+                if(user){
+                    await axios.post('/api/cart',{
+                    "starshipId" : ship,
+                    "userId" : user
+                    })
+                    const {data} = await axios.get(`/api/cart/${user}`)
+                    await dispatch(addedToCart(data))
+                    await getSubtotal(user)
+                }
+            } catch (error) {
+                console.log(error)
             }
 
         }
@@ -32,7 +72,7 @@ import {addedToCart,
                 let subtotal = 0
                 let totalShipsCount = 0 
                 data.forEach((ship)=>{
-                    subtotal += (ship.starship.price)
+                    subtotal += (ship.starship.price * ship.quantity)
                     totalShipsCount  += ship.quantity
                 })
                 dispatch(gotSubtotal(subtotal))
@@ -48,7 +88,7 @@ import {addedToCart,
             let subtotal = 0
             let totalShipsCount = 0 
             userCart.forEach((ship)=>{
-                totalShipsCount += (ship.starship.price)
+                totalShipsCount += (ship.starship.price * ship.quantity)
                 subtotal += ship.quantity
             })
             dispatch(gotSubtotal(subtotal))

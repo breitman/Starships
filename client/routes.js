@@ -17,6 +17,8 @@ import SingleShipPage from './components/Pages/SingleShipPage'
 import AddReview from './components/forms/AddReview'
 import HomePage from './components/Pages/HomePage';
 
+//Profile
+import SingleUserPage from './components/Pages/SingleUserPage'
 /**
  * COMPONENT
  */
@@ -38,6 +40,7 @@ class Routes extends Component {
         <Route exact path='/starships/:id' component={SingleShipPage}/>
         {isLoggedIn &&(
           <Switch>
+            <Route exact path='/account' component={SingleUserPage} />
             <Route exact path='/home' component={HomePage} />
             <Route exact path="/starships" component={ShipList} />
             <Route exact path='/starships/:id' component={SingleShipPage}/>
