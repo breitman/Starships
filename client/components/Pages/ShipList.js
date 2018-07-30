@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchShips } from '../../store/ship';
 import ShipCard from '../cards/ShipCard';
+require('../cards/style/shipCard.css')
 
 class ShipList extends Component {
   componentDidMount() {
@@ -13,12 +14,18 @@ class ShipList extends Component {
 
     return (
       <div>
+        <div className='center'>
         <h1>StarShips</h1>
-          <ul>
-            {ships.map(ship => (
-                  <ShipCard ship={ship} key={ship.id}/>
-            ))}
-          </ul>
+        </div>
+        <div className='card-holder'>
+          {
+            ships.map((ship)=>{
+              return (
+                <ShipCard key={ship.id} ship={ship}/>
+              )
+            })
+          }
+        </div>
       </div>
     )
   }
