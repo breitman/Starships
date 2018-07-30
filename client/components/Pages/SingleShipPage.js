@@ -18,7 +18,6 @@ const reviewList = (reviews, props) => {
         { 
           !(props.user.id === review.userId)? <div></div>
           :(<div>
-          {console.log(props.user.id === review.id)}
             <button type="submit" onClick={() => props.deleteReview(review.id)}>
                 delete this review
             </button> 
@@ -157,12 +156,13 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchSingleShip: shipId => (dispatch(fetchSingleShip(shipId))),
 
     putInCart : (shipId,userId,quantity)=> (dispatch(putInCart(shipId,userId,quantity))),
-    deleteReview: (reviewId) => dispatch(deleteSingleReview(reviewId))
+    deleteReview: (reviewId) => dispatch(deleteSingleReview(reviewId, ownProps)),
+    
     // changingQuantity : (shipId,userId,quantity)=>(dispatch(changingQuantity(shipId,userId,quantity)))
   }
 

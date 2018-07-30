@@ -26,7 +26,9 @@ class ShipCard extends Component {
   }
 
   render() {
+    console.log(this.props)
     const ship = this.props.ship
+
     return (
       <div className='card'>
     <Link to={`/starships/${ship.id}`} >
@@ -57,13 +59,22 @@ class ShipCard extends Component {
   }
 }
 const mapStateToProps = state =>{
-  return {
-    user : state.user
+  console.log(state)
+  if(state.user) {
+    return {
+      user : state.user
+    }
+  } else {
+    return {
+      user : state.session.user
+    }
   }
+  
 }
 
 const mapDispatchToProps = dispatch =>{
   return {
+
     putInCart: (shipId, user) => dispatch(putInCart(shipId, user.id)),
     me : ()=> dispatch(me()),
     putInWishList: (shipId, user) => dispatch(addWish(shipId, user.id))

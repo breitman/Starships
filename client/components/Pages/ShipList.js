@@ -10,12 +10,13 @@ class ShipList extends Component {
     this.props.fetchShips();
   }
   render() {
-    const { ships, putInCart } = this.props;
+    const { ships, putInCart, sessionUser} = this.props;
 
     return (
       <div>
         <div className='center'>
         <h1>StarShips</h1>
+
         </div>
         <div className='card-holder'>
           {
@@ -33,7 +34,8 @@ class ShipList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ships: state.ship.ships
+    ships: state.ship.ships,
+    sessionUser: state.session.user
   }
 }
 
