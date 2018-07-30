@@ -1,37 +1,93 @@
 const router = require('express').Router()
-const {User, Ship, Cart} = require('../db/models')
+const {Review, User, Ship,Cart} = require('../db/models')
 module.exports = router
 
-//mounted on api/cart
-// router.get('/userId', async (req, res, next) => {
-//   try {
-//     const cart = await Cart.findAll();
-//     res.json(cart);
-//   } catch(error) { next(error) }
-// });
 
-// router.post('/:userId', async (req, res, next) => {
-//   try {
-//       await Cart.create(req.body)
-//   } catch (error) {
-//     next(error)
-//   }
-// });
+//GET all ships
+router.get('/:id', async(req, res, next) =>{
+ try {
+  //  const response = await Cart.getShips
 
-// router.put('/:userId', async (req, res, next) => {
-//   try {
-//     //specify shipId in thiunk so we know wehre to update quantity
-//       await Cart.update(req.body.quantity)
-//   } catch (error) {
-//     next(error)
-//   }
-// });
+    const response = await Cart.findAll({
+      include : [{model : Ship}],
+      where : {userId : req.params.id}
+    })
 
-router.post('/',async (req,res,next)=>{
-try {
-  await Cart.create(req.body)
-  res.json(202)
-} catch (error) {
-  next(error)
-}
+    res.json(response)
+  } catch (error) {
+    next(error)
+  }
+
+})
+
+//changing quantity
+router.put('/:userId', async (req,res,next)=>{
+  console.log(req.body)
+  await Cart.update({
+    quantity : req.body.quantity,
+  },
+  {    where : {
+    userId : req.params.userId,
+    starshipId : req.body.shipId
+  }}
+)
+  res.json('updated')
+})
+
+router.post('/',async(req,res,next)=>{
+  try {
+    // getting User information
+    const usersCart = await Cart.findOne({
+      where : {
+        userId : req.body.userId,
+        starshipId : req.body.starshipId
+      }
+    })
+    //Checking if User Already has a cart with the same product
+    if(usersCart){
+      // Checking if the starShip is the same
+      if(usersCart.starshipId === req.body.starshipId){
+        //If it is the same start ship that the user is adding the same ship we just need to add one to quantity
+      const response =  await Cart.update({
+          quantity : (req.body.quantity ? req.body.quantity : usersCart.quantity + 1)
+        },{
+          where : {userId: req.body.userId, starshipId: req.body.starshipId}
+        })
+        res.json(response)
+      }else {
+      const newShip = await Cart.create({
+        quantity : req.body.quantity ? req.body.quantity : 1,
+        userId : req.body.userId,
+        starshipId : req.body.starshipId
+      })
+       res.json(newShip)
+      }
+      //If User is adding a new Item we create a new Cart for the item
+    }else {
+      const response = await Cart.create({
+        quantity : (req.body.quantity > 0 ? req.body.quantity : 1),
+        userId : req.body.userId,
+        starshipId : req.body.starshipId
+      })
+      res.json(response)
+    }
+  } catch (error) {
+    next(error)
+  } 
+})
+
+router.delete('/:id/:shipid',async (req,res,next)=>{
+  try {
+    console.log('serverSide',req.params.id, req.params.shipid)
+    await Cart.destroy({
+      where : {
+        userId : req.params.id,
+        starshipId : req.params.shipid
+      }
+    })
+    res.json('removed')
+  } catch (error) {
+    next(error)
+  }
+
 })

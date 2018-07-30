@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchSingleShip } from '../../store/ship';
-import { addToCart } from '../../store/cart';
+import {putInCart, changingQuantity} from '../../store/cart/thunk'
+require('../style/singleShip.css')
 
 const reviewList = (reviews) => {
   if (!reviews) {return <h2>There are no reviews registered in the database</h2>}
@@ -30,7 +31,10 @@ class SingleShipPage extends Component {
     super();
     this.state = {
       quantity : 0,
+      isNum : true
     }
+    this.onChangeHandler = this.onChangeHandler.bind(this)
+    this.onSubmitHandler = this.onSubmitHandler.bind(this)
   }
 
   componentDidMount() {
@@ -38,12 +42,31 @@ class SingleShipPage extends Component {
     this.props.fetchSingleShip(id);
   }
 
+ async onSubmitHandler(evt){
+    evt.preventDefault()
+    await this.props.putInCart(this.props.singleShip.id,this.props.user.id,this.state.quantity)
+    // await this.props.changingQuantity(this.props.singleShip.id,this.user.id,this.state.quantity)
+  }
+
+  onChangeHandler(evt){
+    if (!(Number(evt.target.value) % 1 === 0)){
+      this.setState({
+        isNum : false
+      })
+    }else {
+      this.setState({
+        isNum:true,
+        quantity : Number(evt.target.value)
+      })
+    }
+  }
+
   render() {
     const singleShip = this.props.singleShip;
-
+    console.log(this.props.user)
     return (
       <div>
-        <h3>{singleShip.name}</h3>
+        {/* <h3>{singleShip.name}</h3>
         <h3>{singleShip.price}</h3>
 
         <hr />
@@ -65,6 +88,47 @@ class SingleShipPage extends Component {
         <hr />
         <button onClick={() => this.props.putInCart(singleShip.name, this.state.quantity)}>Add To Cart</button>
         <hr />
+        reviews */}
+
+        <div>
+          {/* Picture */}
+          <div className='single-ship-container'>
+
+          {/* Picture of ship */}
+            <div className='single-ship-pic '>
+            <div className='single-ship-img-holder '>
+            <img src={singleShip.imageUrl} />
+            </div>
+            </div>
+
+
+            <div className='single-ship-info'>
+              {/* Name of ship  */}
+              <div className='single-ship-name '>
+                <h2>{singleShip.name}</h2>
+              </div>
+
+              <div className='center'>
+              <p>Manufacturer: {singleShip.manufacturer}</p>
+              <p>Model: {singleShip.model}</p>
+              <p>Price: {singleShip.price} </p>
+              </div>
+
+              <div className='center single-ship-adding '>
+              <form onChange={this.onChangeHandler} onSubmit={this.onSubmitHandler}>
+              { this.state.isNum ? "" : <p className='single-ship-adding-invalid '> Quantity must be a valid number </p>}
+                <input name='quantity' placeholder='Quantity'/>
+                <button> Add To Cart </button>
+              </form>
+              </div>
+
+            </div>
+          </div>
+          
+          
+        </div>
+          <hr />
+        <div>
         <h1>Reviews</h1>
           <ul>
             {reviewList(singleShip.reviews)}
@@ -72,6 +136,7 @@ class SingleShipPage extends Component {
         <Link to={`/starships/${singleShip.id}/addreview`}>
           <p>Add review</p>
         </Link>
+        </div>
           
       </div>
     )
@@ -82,15 +147,20 @@ class SingleShipPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    singleShip: state.ship.singleShip
+    singleShip: state.ship.singleShip,
+    user : state.user
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchSingleShip: shipId => (dispatch(fetchSingleShip(shipId))),
-    putInCart: (product) => dispatch(addToCart(product))
+
+    putInCart : (shipId,userId,quantity)=> (dispatch(putInCart(shipId,userId,quantity))),
+
+    // changingQuantity : (shipId,userId,quantity)=>(dispatch(changingQuantity(shipId,userId,quantity)))
   }
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleShipPage);

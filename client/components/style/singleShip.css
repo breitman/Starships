@@ -1,0 +1,60 @@
+.single-ship-container {
+    width: 100%;
+    height: 350px;
+    /* background-color: aqua; */
+    margin: 30px auto;
+}
+
+.single-ship-pic {
+    width: 50%;
+    height: 100%;
+    /* background-color: blueviolet; */
+    display: inline-block;
+    float: left;
+}
+
+.single-ship-info {
+    width: 50%;
+    height: 100%;
+    /* background-color: yellow; */
+    display: inline-block;
+    float: right;
+}
+.single-ship-img-holder {
+    width: 100%;
+    height: 100%;
+}
+.single-ship-img-holder img {
+    width: auto;
+    height: 100%;
+}
+.single-ship-name {
+    text-align: center;
+
+}
+.center {
+    text-align: center;
+}
+
+.infoContainer {
+    width: 100%
+}
+.inline-block {
+    display: inline-block;
+}
+.statement {
+    width: 20%;
+    text-align: end;
+    
+}
+.ship-fact {
+    width: 60%;
+    text-align: center;
+}
+.single-ship-adding {
+    margin-top: 40px;
+}
+.single-ship-adding-invalid {
+    font-size: 12px;
+    color: red;
+}

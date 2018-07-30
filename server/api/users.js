@@ -28,7 +28,9 @@ router.post('/', async (req, res, next) => {
   } catch (error) { next (error) }
 });
 
+
 router.put('/:userId', async (req,res,next) => {
+  console.log('req.body: ', req.body);
   try {
     const findUser = await User.findById(req.params.userId)
     const updatedUser = await findUser.update(req.body)

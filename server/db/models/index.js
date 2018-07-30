@@ -5,19 +5,22 @@ const Cart = require('./cart');
 const Payment = require('./payment');
 
 
-
-Ship.belongsToMany(User, { as: 'users_Ship', through: Cart});
+//Reviews
 Ship.hasMany(Review)
-
 Review.belongsTo(Ship)
+User.hasMany(Review);
 Review.belongsTo(User)
 
+//User to Cart
+Ship.belongsToMany(User, { through: Cart});
+User.belongsToMany(Ship, { through: Cart})
 
-User.belongsToMany(Ship, {as: 'ships_User', through: Cart})
-User.hasMany(Review);
+//User can only have one cart
 User.hasOne(Cart);
 
+//Carts belong to Users and ship
 Cart.belongsTo(User);
+Cart.belongsTo(Ship)
 
 
 //should it be user.hasMany(Payment) ???
