@@ -24,6 +24,7 @@ componentDidMount(){
           <li><button type='submit' onClick={this.props.handleClick}>Logout</button></li>
           <li className='right'><Link to="/account">Account Setting</Link></li>
           <li className='right'><Link to="/cart">Cart (0)</Link></li>
+          <li className='right'><Link to="/wishlist">Wish List</Link></li>
         </ul>
       </div>
       :

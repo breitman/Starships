@@ -1,16 +1,13 @@
 import React from 'react'
-
 import {Navbar} from './components'
-import SignUp from './components/forms/signUp'
 import Routes from './routes'
-import ShipCard from './components/cards/ShipCard'
+import {StripeProvider} from 'react-stripe-elements'; //wrap in this when ready but breaks app when not fully setup
 
 const App = () => {
   return (
     <div>
-      <Navbar />
-      {/* <SignUp /> */}
-      <Routes />
+        <Navbar />
+        <Routes />
     </div>
   )
 }

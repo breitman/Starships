@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 import { fetchShips } from '../../store/ship';
 import ShipCard from '../cards/ShipCard';
 
-//possibly want to render ship cards on this page instead
-//add isLoading
-
 class ShipList extends Component {
   componentDidMount() {
     this.props.fetchShips();
