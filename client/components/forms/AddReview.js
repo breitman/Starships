@@ -3,28 +3,31 @@ import {connect} from 'react-redux';
 import {addReviews} from '../../store/review'
 import ReviewForm from './ReviewForm'
 
-const AddCampusForm = ({handleSubmit}) => (
+const AddReviewForm = ({handleSubmit, ship, user}) => (
   <React.Fragment>
     <h1>Add a new Review</h1>
-    <ReviewForm handleSubmit={handleSubmit} />
+    <ReviewForm handleSubmit={handleSubmit} ship={ship} user={user} />
   </React.Fragment>
 
 
 )
 
-const mapStateToprops = (state) => (console.log(state),{
-  ship: state.singleShip
+const mapStateToprops = (state) => ({
+  ship: state.ship.singleShip,
+  user: state.user
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  
    handleSubmit: async (event, reviewData) =>{
-    console.log(ownProps)
+
     event.preventDefault();
     const starshipAction = await dispatch(addReviews(reviewData, ownProps));
-    ownProps.history.push(`/starships/${ownProps.match.params.id}`)
+    const theId = starshipAction.payload.starshipId
+    ownProps.history.push(`/starships/${theId}`)
   }
   
 })
 
-const AddCampus = connect(mapStateToprops, mapDispatchToProps)(AddCampusForm)
-export default AddCampus;
+const AddReview = connect(mapStateToprops, mapDispatchToProps)(AddReviewForm)
+export default AddReview;
