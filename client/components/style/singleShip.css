@@ -29,6 +29,7 @@
     height: 100%;
 }
 .single-ship-name {
+    color: white;
     text-align: center;
 
 }
@@ -45,7 +46,6 @@
 .statement {
     width: 20%;
     text-align: end;
-
 }
 .ship-fact {
     width: 60%;

@@ -43,12 +43,6 @@ class Navbar extends Component {
               </Dropdown.Menu>
             </Dropdown>
           </Menu>
-          {/* <li><Link className="active" to="/home">Home</Link></li>
-          <li><Link to="/starships">All Ships</Link></li>
-          <li className='logout'><button type='submit' onClick={this.props.handleClick}>Logout</button></li>
-          <li className='right'><Link to="/account">Account Setting</Link></li>
-          <li className='right'><Link to="/cart">Cart</Link></li>
-          <li className='right'><Link to="/wishlist">Wish List</Link></li> */}
         </ul>
       </div>
       :
@@ -57,20 +51,15 @@ class Navbar extends Component {
           <Menu>
             <Menu.Item as={Link} to='/home'>Home</Menu.Item>
             <Menu.Item as ={Link} to='/starships'>All Ships</Menu.Item>
-            <Dropdown icon='user' text='Account' className='link item'>
-              <Dropdown.Menu className='dropdown'>
+            <Menu.Item as ={Link} to='/cart' position='right'>Cart</Menu.Item>
+            <Dropdown icon='user' text='Account' className='link item' position='right'>
+              <Dropdown.Menu clasName='dropdown'>
                 <Dropdown.Item as={Link} text='Log In' to='/login' />
                 <Dropdown.Item text='Sign Up' as={Link} to='/signup'/>
               </Dropdown.Menu>
             </Dropdown>
-            <Menu.Item as ={Link} to='/cart'>Cart</Menu.Item>
+
           </Menu>
-          {/* <li><Link className="active" to="/home">Home</Link></li>
-          <li><Link to="/starships">All Ships</Link></li>
-          <li className='right'><Link to="/account">Account Setting</Link></li>
-          <li className='right'><Link to="/cart">Cart (0)</Link></li>
-          <li className='right'><Link to='/login'>Login</Link></li>
-          <li className='right'><Link to='/signup'>Sign Up</Link></li> */}
         </ul>
       </div>
   }

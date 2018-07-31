@@ -39,7 +39,7 @@ const results = [
     "edited": "2017-04-19T10:56:06.685592Z",
     "url": "https://swapi.co/api/starships/15/",
     "imageUrl" :"https://vignette.wikia.nocookie.net/es.starwars/images/8/82/Executor_and_escorts-0.jpg/revision/latest?cb=20170806065124",
-    "price" : (1143350000 / 10000),
+    "price" : 114335,
     "isFeatured" : true
   },
   {
@@ -64,7 +64,7 @@ const results = [
     "edited": "2014-12-22T17:35:44.431407Z",
     "url": "https://swapi.co/api/starships/5/",
     "imageUrl" :"http://www.scifi-meshes.com/forums/attachment.php?attachmentid=104960&d=1375269194",
-    "price" : (240000 / 10000),
+    "price" : 24000,
     "isFeatured" : true
   },
   {
@@ -89,7 +89,7 @@ const results = [
     "edited": "2014-12-22T17:35:44.452589Z",
     "url": "https://swapi.co/api/starships/9/",
     "imageUrl" :"https://static1.squarespace.com/static/51b3dc8ee4b051b96ceb10de/t/55958abde4b0b0384005cb9e/1435863746718/fan-theory-that-will-change-the-way-you-see-star-wars-and-the-death-star",
-    "price" : (1000000000000 / 10000),
+    "price" : 20000000,
     "isFeatured" : true
   },
   {
@@ -122,7 +122,7 @@ const results = [
     "edited": "2014-12-22T17:35:44.464156Z",
     "url": "https://swapi.co/api/starships/10/",
     "imageUrl" :"https://vignette.wikia.nocookie.net/starwars/images/f/f5/YT1300-CHRON.jpg/revision/latest?cb=20070106183944",
-    "price" : (100000 / 10000),
+    "price" : 40000,
     "isFeatured" : true
   },
   {
@@ -149,7 +149,7 @@ const results = [
     "edited": "2014-12-22T17:35:44.479706Z",
     "url": "https://swapi.co/api/starships/11/",
     "imageUrl" :"https://vignette.wikia.nocookie.net/starwars/images/4/45/BTL-B_Y-wing_BF2.png/revision/latest?cb=20171129235141",
-    "price" : (134999 / 10000)
+    "price" : 75000
   },
   {
     "name": "X-wing",
@@ -180,7 +180,7 @@ const results = [
     "edited": "2014-12-22T17:35:44.491233Z",
     "url": "https://swapi.co/api/starships/12/",
     "imageUrl" :"https://vignette.wikia.nocookie.net/starwars/images/8/80/X-wing_Fathead.png/revision/latest?cb=20161004003846",
-    "price" : (149999 / 10000)
+    "price" : 50000
   },
   {
     "name": "TIE Advanced x1",
@@ -206,7 +206,7 @@ const results = [
     "edited": "2014-12-22T17:35:44.549047Z",
     "url": "https://swapi.co/api/starships/13/",
     "imageUrl" :"https://vignette.wikia.nocookie.net/ru.starwars/images/f/f4/TIEx1_NEGVV.png/revision/latest?cb=20180304151352",
-    "price" : (149999 / 10000)
+    "price" : 80000
   },
   {
     "name": "Slave 1",
@@ -262,7 +262,7 @@ const results = [
     "edited": "2014-12-22T17:35:44.795405Z",
     "url": "https://swapi.co/api/starships/22/",
     "imageUrl" :"https://vignette.wikia.nocookie.net/starwars/images/a/af/Shuttle-CHRON.jpg/revision/latest?cb=20100813150543",
-    "price" : (240000 / 10000)
+    "price" : 30000
   },
   {
     "name": "EF76 Nebulon-B escort frigate",
@@ -287,7 +287,7 @@ const results = [
     "edited": "2014-12-22T17:35:44.848329Z",
     "url": "https://swapi.co/api/starships/23/",
     "imageUrl" :"https://i.imgur.com/NtYVogC.png",
-    "price" : (8500000 / 10000)
+    "price" : 80000
   }
 ]
 

@@ -1,8 +1,8 @@
 .StripeElement {
   width: 40%;
   float: left;
-  position: relative;
-  top: 50%;
+  position: fixed;
+  top: 18%;
   transform: perspective(1px) translateY(-50%);
 }
 
@@ -18,7 +18,7 @@
 }
 
 .checkout-button{
-  position: relative;
+  position: fixed;
   background-color:green; /* Green */
   border: none;
   color: white;
@@ -27,7 +27,7 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 57px 19px;
+  margin: 61px 140px;
   cursor: pointer;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
@@ -50,4 +50,8 @@
   border-right: 1px solid #333333;
   border-bottom: 1px solid #333333;
   border-left: 1px solid #CCCCCC;
+}
+
+.card-input{
+  background: black;
 }

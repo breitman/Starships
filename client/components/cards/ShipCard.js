@@ -61,15 +61,15 @@ class ShipCard extends Component {
         </div>
 
         <div className='ship-info' >
-          <h4 className='color'>Model : {ship.model}</h4>
-          <h4 className='color'> Price : {ship.price} </h4>
+          <h4 className='color'>Model: {ship.model}</h4>
+          <h4 className='color'> Price: ${ship.price} </h4>
         </div>
       </Link>
 
         <div className='ship-info'>
         {(Object.keys(user).length === 0)? button(user, ship)
         :<button onClick={()=>this.addingToCart(ship.id)}  className="button button2">Add to cart</button>}
-        
+
         <button onClick={()=>this.addingToWishList(ship.id)}  className="button button2">Add to wishlist</button>
         </div>
 
@@ -83,7 +83,7 @@ const mapStateToProps = state =>{
   return {
     user : state.user
   }
-  
+
 }
 
 const mapDispatchToProps = dispatch =>{
