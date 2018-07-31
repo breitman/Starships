@@ -1,15 +1,15 @@
-//to be rendered top right of checkout page and on top right of checkout success page
+import React, { Component } from 'react'
+require('../style/cart.css')
+export default class Summary extends Component {
 
-import React from 'react';
-import { Link } from 'react-router-dom'
-
-const SummaryCard = (props) => {
-  const shipCount = props.shipCount;
-  const subtotal = props.subtotal;
-  return (
-    <div className='total'>
+  render() {
+        const shipCount = this.props.shipCount
+        const subtotal = this.props.subtotal
+    return (
+        <div className='total'>
         <div className='summary'>
         <h3> Summary ({shipCount} Ships) </h3>
+
 
         <div className='container'>
         <p className='inline-block'> Subtotal </p>
@@ -34,14 +34,10 @@ const SummaryCard = (props) => {
         </div>
 
         <div className='checkout'>
-        {props.isCheckout ? <Link to='/checkout' className="button button2">Checkout</Link> : null}
-
+        <button className="button button2">Checkout</button>
         </div>
         </div>
-      </div>
-
-
-  )
+        </div>
+    )
+    }
 }
-
-export default SummaryCard;

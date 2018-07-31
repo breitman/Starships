@@ -27,7 +27,7 @@ const button = (user, ship) => {
         } else {
           localStorage.setItem(ship.id, 1);
         }
-        showLocalStorage()
+        console.log(showLocalStorage())
       }}  className="button button2">Add to cart</button>
     )
 }
@@ -54,7 +54,7 @@ class ShipCard extends Component {
       <div className='card'>
     <Link to={`/starships/${ship.id}`} >
         <div className='shipName'>
-        <h2><b>{ship.name}</b></h2>
+        <h2 className='color'><b>{ship.name}</b></h2>
         </div>
 
         <div className='img-holder'>
@@ -62,8 +62,8 @@ class ShipCard extends Component {
         </div>
 
         <div className='ship-info' >
-          <p>Model : {ship.model}</p>
-          <p> Price : {ship.price} </p>
+          <h4 className='color'>Model : {ship.model}</h4>
+          <h4 className='color'> Price : {ship.price} </h4>
         </div>
       </Link>
 
