@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchShips} from '../../store/ship'
 import ShipCard from '../cards/ShipCard'
+require('../style/homePage.css')
+
 
 class HomePage extends Component {
 

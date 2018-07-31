@@ -5,7 +5,7 @@ import { fetchShips } from '../../store/ship';
 import {putInCart} from '../../store/cart/thunk';
 import {me} from '../../store/user';
 import {addWish} from '../../store/wishList';
-require('./style/shipCard.css')
+import './style/shipCard.css'
 
 
 

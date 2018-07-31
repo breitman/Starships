@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  /* background-image: url("Star-Wars-Space-Background-4.jpg"); */
 }
 
 a {
@@ -20,3 +21,6 @@ form div {
   display: inline-block;
 }
 
+ul{
+  overflow: visible;
+}
