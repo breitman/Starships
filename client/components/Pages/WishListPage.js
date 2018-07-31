@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import WishListItems from '../cards/WishlistItems';
 import { fetchWishes } from '../../store/wishList';
-require('../style/cart.css');
+require('../style/wishListPage.css');
 
 class WishListPage extends Component {
 
@@ -55,11 +55,3 @@ export default connect(mapStateToProps, mapDispatchToProps)(WishListPage);
 
 
 // <div className='ship-list '>
-// {
-//   userWishList.map((item, index) => {
-//     return (
-//       <WishListItems userId={this.props.user.id} key={index} ship={item} />
-//     )
-//   })
-// }
-// </div>
