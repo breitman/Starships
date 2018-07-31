@@ -31,35 +31,46 @@ class Navbar extends Component {
     return this.props.isLoggedIn ?
       <div className='navbar' >
         <ul>
-          <li><Link className="active" to="/home">Home</Link></li>
-          <li><Link to="/starships">All Ships</Link></li>
-          <li className='logout'><button type='submit' onClick={this.props.handleClick}>Logout</button></li>
-          {/* <Menu>
+          <Menu>
             <Menu.Item as={Link} to='/home'>Home</Menu.Item>
             <Menu.Item as ={Link} to='/starships'>All Ships</Menu.Item>
-            <Dropdown icon='user' text='Account' className='link item'>
-              <Dropdown.Menu>
+            <Menu.Item  position='right' icon='shopping cart' as ={Link} to='/cart'>Cart</Menu.Item>
+            <Dropdown icon='user' position='right' text='Account' className='link item'>
+              <Dropdown.Menu  position='right' className='dropdown'>
                 <Dropdown.Item as={Link} text='Settings' to='/account' />
                 <Dropdown.Item text='Wish List' as={Link} to='/wishlist'/>
-                <Dropdown.Item as='button' onClick={this.props.handleClick} text='logout' />
+                <Dropdown.Item onClick={this.props.handleClick} text='Logout' />
               </Dropdown.Menu>
             </Dropdown>
-            <Menu.Item as ={Link} to='/cart'>Cart</Menu.Item>
-          </Menu> */}
+          </Menu>
+          {/* <li><Link className="active" to="/home">Home</Link></li>
+          <li><Link to="/starships">All Ships</Link></li>
+          <li className='logout'><button type='submit' onClick={this.props.handleClick}>Logout</button></li>
           <li className='right'><Link to="/account">Account Setting</Link></li>
           <li className='right'><Link to="/cart">Cart</Link></li>
-          <li className='right'><Link to="/wishlist">Wish List</Link></li>
+          <li className='right'><Link to="/wishlist">Wish List</Link></li> */}
         </ul>
       </div>
       :
       <div className='navbar'>
         <ul>
-          <li><Link className="active" to="/home">Home</Link></li>
+          <Menu>
+            <Menu.Item as={Link} to='/home'>Home</Menu.Item>
+            <Menu.Item as ={Link} to='/starships'>All Ships</Menu.Item>
+            <Dropdown icon='user' text='Account' className='link item'>
+              <Dropdown.Menu clasName='dropdown'>
+                <Dropdown.Item as={Link} text='Log In' to='/login' />
+                <Dropdown.Item text='Sign Up' as={Link} to='/signup'/>
+              </Dropdown.Menu>
+            </Dropdown>
+            <Menu.Item as ={Link} to='/cart'>Cart</Menu.Item>
+          </Menu>
+          {/* <li><Link className="active" to="/home">Home</Link></li>
           <li><Link to="/starships">All Ships</Link></li>
           <li className='right'><Link to="/account">Account Setting</Link></li>
           <li className='right'><Link to="/cart">Cart (0)</Link></li>
           <li className='right'><Link to='/login'>Login</Link></li>
-          <li className='right'><Link to='/signup'>Sign Up</Link></li>
+          <li className='right'><Link to='/signup'>Sign Up</Link></li> */}
         </ul>
       </div>
   }

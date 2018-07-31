@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  /* background-image: url("Star-Wars-Space-Background-4.jpg"); */
 }
 
 a {
@@ -18,4 +19,8 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+ul{
+  overflow: visible;
 }

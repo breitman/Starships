@@ -2,7 +2,7 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: visible;
     background-color: #333;
     position: relative;
 }
@@ -54,8 +54,12 @@ li a:hover {
 .dropdown {
     display: block;
     color: white;
-    position: absolute;
     text-align: center;
+    position: fixed;
+    top: auto;
+    left: auto;
+    width: inherit;
+    overflow: visible;
 }
 
 .dropdown-content {
