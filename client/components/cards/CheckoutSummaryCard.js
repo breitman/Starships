@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom'
+require('../style/cart.css');
 
 const SummaryCard = (props) => {
   const shipCount = props.shipCount;

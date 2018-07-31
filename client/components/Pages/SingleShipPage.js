@@ -15,17 +15,17 @@ const reviewList = (reviews, props) => {
         <h3>reviewer: {review.userId}</h3>
         <p>review content: {review.content}</p>
         <p>review rate: {review.rate}</p>
-        { 
+        {
           !(props.user.id === review.userId)? <div></div>
           :(<div>
             <button type="submit" onClick={() => props.deleteReview(review.id)}>
                 delete this review
-            </button> 
+            </button>
           </div>)}
       </li>
       </ul>
-      
-    
+
+
   </div>
     ))
 }
@@ -108,14 +108,14 @@ class SingleShipPage extends Component {
 
             <div className='single-ship-info'>
               {/* Name of ship  */}
-              <div className='single-ship-name '>
+              <div className='single-ship-name'>
                 <h2>{singleShip.name}</h2>
               </div>
 
               <div className='center'>
               <p>Manufacturer: {singleShip.manufacturer}</p>
               <p>Model: {singleShip.model}</p>
-              <p>Price: {singleShip.price} </p>
+              <p>Price: ${singleShip.price} </p>
               </div>
 
               <div className='center single-ship-adding '>
@@ -128,8 +128,8 @@ class SingleShipPage extends Component {
 
             </div>
           </div>
-          
-          
+
+
         </div>
           <hr />
         <div>
@@ -141,7 +141,7 @@ class SingleShipPage extends Component {
           <p>Add review</p>
         </Link>
         </div>
-          
+
       </div>
     )
 
@@ -162,7 +162,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     putInCart : (shipId,userId,quantity)=> (dispatch(putInCart(shipId,userId,quantity))),
     deleteReview: (reviewId) => dispatch(deleteSingleReview(reviewId, ownProps)),
-    
+
     // changingQuantity : (shipId,userId,quantity)=>(dispatch(changingQuantity(shipId,userId,quantity)))
   }
 

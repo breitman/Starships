@@ -37,10 +37,11 @@ class CheckoutForm extends Component {
         <div className="checkout">
             <p className='title-checkout'>Would you like to complete the purchase?</p>
             <CheckoutSummaryCard isCheckout={false} subtotal={this.props.subtotal} shipCount={this.props.shipCount}/>
-            <div className='row'>
-                <div className='col-4'>
+            <div >
+                <div className='card-input'>
                     <CardElement className='StripeElement' style =
                     {{base: {
+                            iconColor: 'green',
                             color: 'white',
                             fontSize: '30px',
                             color: "white",
@@ -50,9 +51,9 @@ class CheckoutForm extends Component {
                             }
                         }
                     }}/>
+                    <button className='checkout-button' onClick={this.submit}>Confirm Purchase</button>
                 </div>
             </div>
-            <button className='checkout-button' onClick={this.submit}>Confirm Purchase</button>
         </div>
         );
     }
