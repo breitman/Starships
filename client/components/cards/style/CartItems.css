@@ -1,7 +1,6 @@
 .CartItems-container {
     width: 100%;
     height: 130px;
-  
 }
 
 .CartItems-pic-info {
@@ -34,15 +33,19 @@
 }
 .cartItem-quantity {
     width: 20%;
-
     display: inline-block;
 }
 
+body {
+    background-image: url("http://www.hd-freeimages.com/uploads/large/star-wallpapers/free-hd-star-wallpapers-download-cool.jpg")
+}
+.allShip-Header {
+    color:white;
+}
 
-
-
-
-
+.color {
+    color: aliceblue;
+}
 
 
 

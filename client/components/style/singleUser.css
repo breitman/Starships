@@ -45,4 +45,8 @@ input[type=text] {
     border: 2px solid #e7e7e7;
 }
 
+.color {
+    color : white;
+}
+
 .button4:hover {background-color: #e7e7e7;}
