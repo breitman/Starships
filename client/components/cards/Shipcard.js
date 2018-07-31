@@ -7,7 +7,12 @@ import {me} from '../../store/user';
 import {addWish} from '../../store/wishList';
 import './style/shipCard.css'
 
-
+const showLocalStorage = () => {
+  console.log('local Storage') 
+  for(var i =0; i < localStorage.length; i++){
+    console.log(localStorage.key(i), '=',localStorage.getItem(localStorage.key(i)));
+  }
+}
 
 import React, { Component } from 'react'
 
@@ -20,7 +25,7 @@ const button = (user, ship) => {
         } else {
           localStorage.setItem(ship.id, 1);
         }
-        console.log(localStorage.getItem(ship.id))
+        showLocalStorage()
       }}  className="button button2">Add to cart</button>
     )
 }
