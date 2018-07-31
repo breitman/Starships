@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import WishListItems from '../cards/WishlistItems';
+import WishListItems from '../cards/WishListItems';
 import { fetchWishes } from '../../store/wishList';
 require('../style/cart.css');
 
