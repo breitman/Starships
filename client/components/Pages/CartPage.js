@@ -1,9 +1,12 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react'
 import CartItem from '../cards/CartItems'
-import {getCart, getSubtotal} from '../../store/cart/thunk'
+import { getCart, getSubtotal } from '../../store/cart/thunk'
+import CheckoutSummaryCard from '../cards/CheckoutSummaryCard'
+
 require('../style/cart.css')
 import Summary from '../forms/summary'
+
 
 class CartPage extends Component {
 
@@ -22,6 +25,8 @@ class CartPage extends Component {
   }
 
   render() {
+    const user = this.props.user
+    console.log(user)
 
     const shipCount = (this.props.shipCount)
     const subtotal = (this.props.subtotal)
@@ -33,7 +38,7 @@ class CartPage extends Component {
       <div className='products'>
             <h1 className='color center' > Your Cart </h1>
 
-            <div className='list-item-cal'>
+          <div className='list-item-cal'>
             <hr />
 
             <div className='list-item'>
@@ -48,56 +53,21 @@ class CartPage extends Component {
             <p className='color'>Quantity</p>
             </div>
             <hr />
-
-            <div className='ship-list '>
-            {
-              Usercart.map((item,index)=>{
-                return (
-                  <CartItem userId={this.props.user.id} key={index} ship={item}/>
-                )
-              })
+            {this.props.isLoggedIn ?
+              <div className='ship-list '>
+                {
+                  Usercart.map((item, index) => {
+                    return (
+                      <CartItem userId={this.props.user.id} key={index} ship={item} />
+                    )
+                  })
+                }
+              </div>
+              : <h1>Hello</h1>
             }
-            </div>
-
-
-
-      </div>
-        
-      </div>
-            <Summary subtotal={subtotal} shipCount={shipCount} Usercart={Usercart}/>
-      {/* <div className='total'>
-        <div className='summary'>
-        <h3> Summary ({shipCount} Ships) </h3>
-
-
-        <div className='container'>
-        <p className='inline-block'> Subtotal </p>
-        <p className='inline-block right'>${subtotal}</p>
+          </div>
         </div>
-
-        <div className='container'>
-        <p className='inline-block'> Shipping </p>
-        <p className='inline-block right'>$0</p>
-        </div>
-
-
-        <div className='container'>
-        <p className='inline-block'> Est. Taxes </p>
-        <p className='inline-block right'>$0</p>
-        </div>
-
-        <hr />
-        <div className='container'>
-        <p className='inline-block'><b>Total</b></p>
-        <p className='inline-block right'>${subtotal}</p>
-        </div>
-
-        <div className='checkout'>
-        <button className="button button2">Checkout</button>
-        </div>
-        </div>
-      </div> */}
-        
+        <CheckoutSummaryCard isCheckout={true}subtotal={subtotal} shipCount={shipCount}/>
       </div>
     )
   }
@@ -105,17 +75,18 @@ class CartPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    cart : state.cart.cart,
-    user : state.user,
-    subtotal : state.cart.subtotal,
-    shipCount : state.cart.shipCount
+    isLoggedIn: !!state.user.id,
+    cart: state.cart.cart,
+    user: state.user,
+    subtotal: state.cart.subtotal,
+    shipCount: state.cart.shipCount
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCart : userId => (dispatch(getCart(userId))),
-    getSubtotal : userCart => (dispatch(getSubtotal(userCart))),
+    getCart: userId => (dispatch(getCart(userId))),
+    getSubtotal: userCart => (dispatch(getSubtotal(userCart))),
   }
 }
 

@@ -7,9 +7,28 @@ import {me} from '../../store/user';
 import {addWish} from '../../store/wishList';
 import './style/shipCard.css'
 
-
+const showLocalStorage = () => {
+  console.log('local Storage')
+  for(var i =0; i < localStorage.length; i++){
+    console.log(localStorage.key(i), '=',localStorage.getItem(localStorage.key(i)));
+  }
+}
 
 import React, { Component } from 'react'
+
+const button = (user, ship) => {
+    return (
+      <button onClick={()=>{
+        let qty =  JSON.parse(localStorage.getItem(ship.id))
+        if(qty) {
+          localStorage.setItem(ship.id, qty + 1);
+        } else {
+          localStorage.setItem(ship.id, 1);
+        }
+        showLocalStorage()
+      }}  className="button button2">Add to cart</button>
+    )
+}
 
 class ShipCard extends Component {
 
@@ -41,24 +60,14 @@ class ShipCard extends Component {
         </div>
 
         <div className='ship-info' >
-          <h4 className='color'>Model : {ship.model}</h4>
-          <h4 className='color'> Price : {ship.price} </h4>
+          <h4 className='color'>Model: {ship.model}</h4>
+          <h4 className='color'> Price: ${ship.price} </h4>
         </div>
       </Link>
 
         <div className='ship-info'>
-        {!user ? (<button onClick={()=>this.addingToCart(ship.id)}  className="button button2">Add to cart</button>
-        ): (
-          <button onClick={()=>{
-            let qty =  JSON.parse(localStorage.getItem(ship.id))
-            if(qty) {
-              localStorage.setItem(ship.id, qty + 1);
-            } else {
-              localStorage.setItem(ship.id, 1);
-            }
-          }}  className="button button2">Add to cart</button>
-        )}
-        
+        {(Object.keys(user).length === 0)? button(user, ship)
+        :<button onClick={()=>this.addingToCart(ship.id)}  className="button button2">Add to cart</button>}
 
         <button onClick={()=>this.addingToWishList(ship.id)}  className="button button2">Add to wishlist</button>
         </div>
@@ -70,17 +79,10 @@ class ShipCard extends Component {
   }
 }
 const mapStateToProps = state =>{
-  console.log(state)
-  if(state.user) {
-    return {
-      user : state.user
-    }
-  } else {
-    return {
-      user : state.session.user
-    }
+  return {
+    user : state.user
   }
-  
+
 }
 
 const mapDispatchToProps = dispatch =>{
