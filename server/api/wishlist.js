@@ -1,55 +1,60 @@
 const router = require('express').Router();
-const { Ship, Wishlist } = require('../db/models');
+const {Wishlist,Ship}  = require('../db/models');
 
 module.exports = router;
 
 //get all ships by user's wishlist
-router.get('/:userId', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
-    const ships = await Wishlist.findAll({
-      include: [{ model: Ship }],
-      where: { userId: req.params.userId }
-    });
+    const result = await Wishlist.findAll({
+      include : [{model : Ship}],
+      userId : req.params.userId
+    })
+    res.json(result)
 
-    res.json(ships);
-  } catch (error) { next(error) }
+  } catch (error) {
+    console.log(error)
+  }
 });
 
-//post route to add to wishlist but send a message if the item is already in the wishlist
-//should this only be to /:userId ???
-router.post('/', async (req, res, next) => {
+
+
+router.post('/', async (req,res,next)=>{
   try {
-    const usersWishList = await Wishlist.findOne({
-      where: {
-        userId: req.body.userId,
-        starshipId: req.body.starshipId
+    const found = await Wishlist.findOne({
+      where : {
+        userId : req.body.userId,
+        starshipId : req.body.starshipId
       }
-    });
-    //Checking if User Already has a wishlist with the same product
-    if (usersWishList) {
-      if (usersWishList.starshipId === req.body.starshipId) {
-        res.json('This item is already in your wishlist');
-
-      } else {
-
-        const newWishListShip = await Wishlist.create({
-          userId: req.body.userId,
-          starshipId: req.body.starshipId
-        });
-        res.json(newWishListShip);
-      }
+    })
+    if(found){
+      res.json(found)
+    }else{
+      const addedToWish = await Wishlist.create({
+        userId : req.body.userId,
+        starshipId : req.body.starshipId
+      })
+      res.json(addedToWish)
     }
-  } catch (error) { next(error) }
-});
+  } catch (error) {
+    next(error)
+  }
 
-router.delete('/:userId/:shipId', async (req, res, next) => {
+})
+
+
+
+router.delete('/',async (req,res,next) => {
   try {
     await Wishlist.destroy({
-      where: {
-        userId: req.params.id,
-        starshipId: req.params.shipId
+      where : {
+        userId : req.body.userId,
+        starshipId : req.body.starshipId
       }
-    });
-    res.json('removed');
-  } catch (error) { next(error) }
-});
+    })
+    res.json(202)
+  } catch (error) {
+    next(error)
+  }
+
+})

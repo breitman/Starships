@@ -40,7 +40,7 @@ const results = [
     "url": "https://swapi.co/api/starships/15/",
     "imageUrl" :"https://vignette.wikia.nocookie.net/es.starwars/images/8/82/Executor_and_escorts-0.jpg/revision/latest?cb=20170806065124",
     "price" : (1143350000 / 10000),
-    "isFeatured" : True
+    "isFeatured" : true
   },
   {
     "name": "Sentinel-class landing craft",
@@ -65,7 +65,7 @@ const results = [
     "url": "https://swapi.co/api/starships/5/",
     "imageUrl" :"http://www.scifi-meshes.com/forums/attachment.php?attachmentid=104960&d=1375269194",
     "price" : (240000 / 10000),
-    "isFeatured" : True
+    "isFeatured" : true
   },
   {
     "name": "Death Star",
@@ -90,7 +90,7 @@ const results = [
     "url": "https://swapi.co/api/starships/9/",
     "imageUrl" :"https://static1.squarespace.com/static/51b3dc8ee4b051b96ceb10de/t/55958abde4b0b0384005cb9e/1435863746718/fan-theory-that-will-change-the-way-you-see-star-wars-and-the-death-star",
     "price" : (1000000000000 / 10000),
-    "isFeatured" : True
+    "isFeatured" : true
   },
   {
     "name": "Millennium Falcon",
@@ -123,7 +123,7 @@ const results = [
     "url": "https://swapi.co/api/starships/10/",
     "imageUrl" :"https://vignette.wikia.nocookie.net/starwars/images/f/f5/YT1300-CHRON.jpg/revision/latest?cb=20070106183944",
     "price" : (100000 / 10000),
-    "isFeatured" : True
+    "isFeatured" : true
   },
   {
     "name": "Y-wing",
