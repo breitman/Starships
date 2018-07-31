@@ -26,7 +26,9 @@ class ShipCard extends Component {
   }
 
   render() {
+    console.log(this.props)
     const ship = this.props.ship
+
     return (
       <div className='card'>
     <Link to={`/starships/${ship.id}`} >
@@ -46,6 +48,14 @@ class ShipCard extends Component {
 
         <div className='ship-info'>
         <button onClick={()=>this.addingToCart(ship.id)}  className="button button2">Add to cart</button>
+        <button onClick={()=>{
+          let qty =  JSON.parse(localStorage.getItem(ship.id))
+          if(qty) {
+            localStorage.setItem(ship.id, qty + 1);
+          } else {
+            localStorage.setItem(ship.id, 1);
+          }
+        }}  className="button button2">Add to cart</button>
 
         <button onClick={()=>this.addingToWishList(ship.id)}  className="button button2">Add to wishlist</button>
         </div>
@@ -57,13 +67,22 @@ class ShipCard extends Component {
   }
 }
 const mapStateToProps = state =>{
-  return {
-    user : state.user
+  console.log(state)
+  if(state.user) {
+    return {
+      user : state.user
+    }
+  } else {
+    return {
+      user : state.session.user
+    }
   }
+  
 }
 
 const mapDispatchToProps = dispatch =>{
   return {
+
     putInCart: (shipId, user) => dispatch(putInCart(shipId, user.id)),
     me : ()=> dispatch(me()),
     putInWishList: (shipId, user) => dispatch(addWish(shipId, user.id))

@@ -96,5 +96,13 @@
     "supertest": "^3.0.0",
     "webpack": "^4.12.0",
     "webpack-cli": "^3.0.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/autarky-nomoi/Starships.git"
+  },
+  "bugs": {
+    "url": "https://github.com/autarky-nomoi/Starships/issues"
+  },
+  "homepage": "https://github.com/autarky-nomoi/Starships#readme"
 }
