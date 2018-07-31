@@ -35,7 +35,6 @@ class ShipList extends Component {
 const mapStateToProps = (state) => {
   return {
     ships: state.ship.ships,
-    sessionUser: state.session.user
   }
 }
 
