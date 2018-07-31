@@ -7,6 +7,28 @@ import CheckoutSummaryCard from '../cards/CheckoutSummaryCard'
 require('../style/cart.css')
 import Summary from '../forms/summary'
 
+const showLocalStorage = () => {
+  console.log('local Storage') 
+  let cartObj = {}
+  for(var i =0; i < localStorage.length; i++){
+    cartObj[localStorage.key(i)] = localStorage.getItem(localStorage.key(i))
+  }
+  return cartObj
+}
+
+const guestSummaryFunc = (ships,guestCart, GuestShip) =>{
+  let totalCount = 0;
+  let totalPrice = 0;
+  ships.forEach((ship)=>{
+
+      totalCount += Number(guestCart[ship])
+      totalPrice += GuestShip[ship - 1].price * Number(guestCart[ship])
+  })
+  return {
+    totalCount,
+    totalPrice
+  }
+}
 
 class CartPage extends Component {
 
@@ -24,15 +46,36 @@ class CartPage extends Component {
     })
   }
 
-  render() {
-    const user = this.props.user
-    console.log(user)
+  gettingGuestShip(objArr,ships){
+    const result = ships.filter((ship,index)=>{
+      return objArr.includes(ship.id + "")
+    })
+    return result
+  }
 
+
+  
+
+  render() {
+    console.log('this is cart page object',showLocalStorage())
+    const ships = this.props.ships
+
+    const guestCart = showLocalStorage()
+    const guestUserCart =  Object.keys(showLocalStorage())
+    const GuestShip = this.gettingGuestShip(guestUserCart,ships)
+    
+    
+
+    // console.log(guestSummary)
+    const user = this.props.user
     const shipCount = (this.props.shipCount)
     const subtotal = (this.props.subtotal)
     const Usercart = this.props.cart
 
-    console.log(this.props.cart)
+    const guestSubTotal = guestSummaryFunc(guestUserCart,guestCart, GuestShip)
+    console.log(guestUserCart)
+    console.log(GuestShip)
+    console.log("guest ships", guestSubTotal)
     return (
       <div className='cart'>
       <div className='products'>
@@ -62,19 +105,41 @@ class CartPage extends Component {
                     )
                   })
                 }
+                
               </div>
-              : <h1>Hello</h1>
+              : <div className='ship-list'>
+
+              {
+                GuestShip.map((ship,index)=>{
+                  ship.quantity = Number(guestCart[ship.id])
+                  ship.starship = ship
+                  return (
+                    <CartItem key={index} ship={ship}/>
+                  )
+                })
+              }
+              
+              </div>
             }
           </div>
         </div>
-        <CheckoutSummaryCard isCheckout={true}subtotal={subtotal} shipCount={shipCount}/>
+        {this.props.isLoggedIn ?
+          <CheckoutSummaryCard isCheckout={true} subtotal={subtotal} shipCount={shipCount}/>
+
+        :
+       <CheckoutSummaryCard isCheckout={true} subtotal={guestSubTotal.totalPrice} shipCount={guestSubTotal.totalCount}/>
+
+
+        }
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
+  console.log('this is state',state)
   return {
+    ships : state.ship.ships,
     isLoggedIn: !!state.user.id,
     cart: state.cart.cart,
     user: state.user,
@@ -87,6 +152,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getCart: userId => (dispatch(getCart(userId))),
     getSubtotal: userCart => (dispatch(getSubtotal(userCart))),
+    
   }
 }
 

@@ -9,11 +9,11 @@ import {addedToCart,
 
 } from './actionCreator'
 
-    const priceChanging = (data) => {
+    export const priceChanging = (ships) => {
 
         let totalCount = 0
         let totalPrice = 0
-        data.forEach((el)=>{
+        ships.forEach((el)=>{
             totalCount += el.quantity
             totalPrice += el.quantity * el.starship.price
         })
