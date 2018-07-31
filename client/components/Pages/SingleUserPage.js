@@ -38,9 +38,9 @@ class SingleUserPage extends Component {
         }
 render() {
     return (
-        <form onChange={this.onChangeHandler} onSubmit={this.onSubmitHandler}>
+        <form className='color' onChange={this.onChangeHandler} onSubmit={this.onSubmitHandler}>
         <div className='form-container'>
-        <label>First Name</label>
+        <label >First Name</label>
         <input type="text"  name="firstName" value={this.state.firstName ? this.state.firstName : ""}/>
         <hr />
         <label>Last Name</label>

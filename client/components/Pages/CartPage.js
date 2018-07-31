@@ -3,38 +3,52 @@ import React, { Component } from 'react'
 import {CartItem, CartItemForGuest} from '../cards/CartItems'
 import {getCart, getSubtotal} from '../../store/cart/thunk'
 require('../style/cart.css')
+import Summary from '../forms/summary'
 
 
 class CartPage extends Component {
 
+  // constructor(props){
+  //   super(props)
+  //   this.state={
+  //     userCart : {}
+  //   }
+  // }
+
   componentDidMount() {
     this.props.getCart(this.props.user.id)
+    this.setState({
+      userCart : this.props.cart
+    })
   }
 
   render() {
     const user = this.props.user
     console.log(user)
+
     const shipCount = (this.props.shipCount)
     const subtotal = (this.props.subtotal)
     const Usercart = this.props.cart
+
+    console.log(this.props.cart)
     return (
       <div className='cart'>
       <div className='products'>
-            <h1> Your Cart </h1>
+            <h1 className='color center' > Your Cart </h1>
 
             <div className='list-item-cal'>
             <hr />
 
             <div className='list-item'>
-            <p>Item</p>
+            <p className='color'>Item</p>
             </div>
 
             <div className='list-price'>
-            <p>Price</p>
+            <p className='color'>Price</p>
             </div>
 
             <div className='list-quantity '>
-            <p>Quantity</p>
+            <p className='color'>Quantity</p>
             </div>
             <hr />
 
@@ -55,7 +69,8 @@ class CartPage extends Component {
       </div>
         
       </div>
-      <div className='total'>
+            <Summary subtotal={subtotal} shipCount={shipCount} Usercart={Usercart}/>
+      {/* <div className='total'>
         <div className='summary'>
         <h3> Summary ({shipCount} Ships) </h3>
 
@@ -86,7 +101,7 @@ class CartPage extends Component {
         <button className="button button2">Checkout</button>
         </div>
         </div>
-      </div>
+      </div> */}
         
       </div>
     )

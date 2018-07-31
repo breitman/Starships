@@ -1,16 +1,22 @@
-import React from 'react'
+
 import {Navbar} from './components'
 import Routes from './routes'
-import {StripeProvider} from 'react-stripe-elements'; //wrap in this when ready but breaks app when not fully setup
+import {getCart} from './store/cart/thunk'
+// import {StripeProvider} from 'react-stripe-elements'; wrap in this when ready but breaks app when not fully setup
 
-const App = () => {
-  return (
-    <div>
+import React, { Component } from 'react'
+
+class App extends Component {
+  render() {
+    return (
+      <div>
         <Navbar />
         <Routes />
-    </div>
-  )
+      </div>
+    )
+  }
 }
+
 
 // import React, {Component} from 'react';
 // import {Elements, StripeProvider} from 'react-stripe-elements';
@@ -30,5 +36,9 @@ const App = () => {
 //     );
 //   }
 // }
+
+
+
+
 
 export default App;
