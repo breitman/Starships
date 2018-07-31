@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react'
 import CartItem from '../cards/CartItems'
-import {getCart, getSubtotal} from '../../store/cart/thunk'
+import { getCart, getSubtotal } from '../../store/cart/thunk'
+import CheckoutSummaryCard from '../cards/CheckoutSummaryCard'
+
 require('../style/cart.css')
 
 class CartPage extends Component {
@@ -16,73 +18,37 @@ class CartPage extends Component {
     const Usercart = this.props.cart
     return (
       <div className='cart'>
-      <div className='products'>
-            <h1> Your Cart </h1>
+        <div className='products'>
+          <h1> Your Cart </h1>
 
-            <div className='list-item-cal'>
+          <div className='list-item-cal'>
             <hr />
 
             <div className='list-item'>
-            <p>Item</p>
+              <p>Item</p>
             </div>
 
             <div className='list-price'>
-            <p>Price</p>
+              <p>Price</p>
             </div>
 
             <div className='list-quantity '>
-            <p>Quantity</p>
+              <p>Quantity</p>
             </div>
             <hr />
 
             <div className='ship-list '>
-            {
-              Usercart.map((item,index)=>{
-                return (
-                  <CartItem userId={this.props.user.id} key={index} ship={item}/>
-                )
-              })
-            }
+              {
+                Usercart.map((item, index) => {
+                  return (
+                    <CartItem userId={this.props.user.id} key={index} ship={item} />
+                  )
+                })
+              }
             </div>
-
-
-
-      </div>
-        
-      </div>
-      <div className='total'>
-        <div className='summary'>
-        <h3> Summary ({shipCount} Ships) </h3>
-
-
-        <div className='container'>
-        <p className='inline-block'> Subtotal </p>
-        <p className='inline-block right'>${subtotal}</p>
+          </div>
         </div>
-
-        <div className='container'>
-        <p className='inline-block'> Shipping </p>
-        <p className='inline-block right'>$0</p>
-        </div>
-
-
-        <div className='container'>
-        <p className='inline-block'> Est. Taxes </p>
-        <p className='inline-block right'>$0</p>
-        </div>
-
-        <hr />
-        <div className='container'>
-        <p className='inline-block'><b>Total</b></p>
-        <p className='inline-block right'>${subtotal}</p>
-        </div>
-
-        <div className='checkout'>
-        <button className="button button2">Checkout</button>
-        </div>
-        </div>
-      </div>
-        
+        <CheckoutSummaryCard isCheckout={true}subtotal={subtotal} shipCount={shipCount}/>
       </div>
     )
   }
@@ -90,17 +56,17 @@ class CartPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    cart : state.cart.cart,
-    user : state.user,
-    subtotal : state.cart.subtotal,
-    shipCount : state.cart.shipCount
+    cart: state.cart.cart,
+    user: state.user,
+    subtotal: state.cart.subtotal,
+    shipCount: state.cart.shipCount
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCart : userId => (dispatch(getCart(userId))),
-    getSubtotal : userCart => (dispatch(getSubtotal(userCart))),
+    getCart: userId => (dispatch(getCart(userId))),
+    getSubtotal: userCart => (dispatch(getSubtotal(userCart))),
   }
 }
 

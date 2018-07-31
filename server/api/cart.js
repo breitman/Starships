@@ -5,6 +5,7 @@ module.exports = router
 
 //GET all ships
 router.get('/:id', async (req, res, next) => {
+  console.log(req.user.id)
   try {
     const response = await Cart.findAll({
       include : [{model : Ship}],
@@ -47,7 +48,7 @@ router.post('/', async (req,res,next) => {
       // Checking if the starShip is the same     //is this neccessary??? isnt the cart instance we have already filtered by shipId above
       if(usersCart.starshipId === req.body.starshipId) {
         //If it is the same start ship that the user is adding the same ship we just need to add one to quantity
-        // do we need the where here??? isnt the cart already specified. 
+        // do we need the where here??? isnt the cart already specified.
       const response =  await Cart.update({
           quantity : (req.body.quantity ? req.body.quantity : usersCart.quantity + 1)
         },{
@@ -78,7 +79,7 @@ router.post('/', async (req,res,next) => {
     }
   } catch (error) {
     next(error)
-  } 
+  }
 })
 
 router.delete('/:id/:shipid', async (req, res, next) => {
