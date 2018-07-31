@@ -4,6 +4,14 @@ import {CartItem, CartItemForGuest} from '../cards/CartItems'
 import {getCart, getSubtotal} from '../../store/cart/thunk'
 require('../style/cart.css')
 
+const showLocalStorage = () => {
+  console.log('local Storage') 
+  let cartObj = {}
+  for(var i =0; i < localStorage.length; i++){
+    cartObj[localStorage.key(i)] = localStorage.getItem(localStorage.key(i))
+  }
+  return cartObj
+}
 
 class CartPage extends Component {
 
@@ -17,6 +25,7 @@ class CartPage extends Component {
     const shipCount = (this.props.shipCount)
     const subtotal = (this.props.subtotal)
     const Usercart = this.props.cart
+    console.log(showLocalStorage())
     return (
       <div className='cart'>
       <div className='products'>
@@ -39,13 +48,18 @@ class CartPage extends Component {
             <hr />
 
             <div className='ship-list '>
-            {console.log((Object.keys(user).length === 0))}
-            { !user.id ?<h1>guset cart </h1> :(Usercart.map((item,index)=>{
+            
+            {/*(Object.keys(user).length === 0)?<table> {showLocalStorage()}</table> :(Usercart.map((item,index)=>{
               return (
                 <CartItem userId={this.props.user.id} key={index} ship={item}/>
               )
             })) 
-              }
+          */}
+            {Usercart.map((item,index)=>{
+              return (
+                <CartItem userId={this.props.user.id} key={index} ship={item}/>
+              )
+            })}
               
             
             </div>

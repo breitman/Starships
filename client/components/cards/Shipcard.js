@@ -9,9 +9,11 @@ import './style/shipCard.css'
 
 const showLocalStorage = () => {
   console.log('local Storage') 
+  let cartObj = {}
   for(var i =0; i < localStorage.length; i++){
-    console.log(localStorage.key(i), '=',localStorage.getItem(localStorage.key(i)));
+    cartObj[localStorage.key(i)] = localStorage.getItem(localStorage.key(i))
   }
+  return cartObj
 }
 
 import React, { Component } from 'react'
