@@ -28,7 +28,7 @@ class ShipCard extends Component {
   render() {
     console.log(this.props)
     const ship = this.props.ship
-
+    const user = this.props.user
     return (
       <div className='card'>
     <Link to={`/starships/${ship.id}`} >
@@ -47,15 +47,18 @@ class ShipCard extends Component {
       </Link>
 
         <div className='ship-info'>
-        <button onClick={()=>this.addingToCart(ship.id)}  className="button button2">Add to cart</button>
-        <button onClick={()=>{
-          let qty =  JSON.parse(localStorage.getItem(ship.id))
-          if(qty) {
-            localStorage.setItem(ship.id, qty + 1);
-          } else {
-            localStorage.setItem(ship.id, 1);
-          }
-        }}  className="button button2">Add to cart</button>
+        {!user ? (<button onClick={()=>this.addingToCart(ship.id)}  className="button button2">Add to cart</button>
+        ): (
+          <button onClick={()=>{
+            let qty =  JSON.parse(localStorage.getItem(ship.id))
+            if(qty) {
+              localStorage.setItem(ship.id, qty + 1);
+            } else {
+              localStorage.setItem(ship.id, 1);
+            }
+          }}  className="button button2">Add to cart</button>
+        )}
+        
 
         <button onClick={()=>this.addingToWishList(ship.id)}  className="button button2">Add to wishlist</button>
         </div>
