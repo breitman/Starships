@@ -51,43 +51,6 @@ class CartItems extends Component {
     const shipInfo = this.props.ship.starship
     
     return (
-      // <div>
-      //   <hr />
-      // <div className='container-ships'>
-      // <div className='container-ships-item '>
-      //   <div className='container-ships-img'>
-      //     <img src={shipInfo.imageUrl}/>
-      //   </div>
-
-      //   <div className='container-ships-info '>
-          // <p>Name: {shipInfo.name}</p>
-          // <p>Model: {shipInfo.model}</p>
-          // <p>manufacturer: {shipInfo.manufacturer}</p>
-      //   </div>
-  
-      // </div>
-      // <div className='container-ships-price'>
-      //   <p> ${shipInfo.price}</p>
-      // </div>
-      // <div className='container-ships-quantity'>
-      // {/* user can change quantity */}
-
-      // <form onChange={this.onChangeHandler} onSubmit={this.onSubmitHandler}>
-      // <p>Quantity: {ship.quantity}</p>
-      // <input name='quantity' value={this.state.quantity}/>
-
-      //   <button> Confirm Quantity </button>
-      // </form>
-      // </div>
-
-      // </div>
-
-        // <div className='remove-btn'>
-        // <button onClick={this.removeHandler} className="remove-button">Remove</button>
-        // </div>
-      //   <hr />
-      // </div>
-
       <div className='CartItems-container '>
       <hr />
   
@@ -96,14 +59,14 @@ class CartItems extends Component {
               <img src={shipInfo.imageUrl}/>
           </div>
           <div className='caritem-info '>
-          <p>Name: {shipInfo.name}</p>
-          <p>Model: {shipInfo.model}</p>
-          <p>manufacturer: {shipInfo.manufacturer}</p>
+          <p className='color'>Name: {shipInfo.name}</p>
+          <p className='color'>Model: {shipInfo.model}</p>
+          <p className='color'>manufacturer: {shipInfo.manufacturer}</p>
           </div>
           </div>
 
           <div className='cartItem-price'> 
-          <p> ${shipInfo.price}</p>
+          <p className='color'> ${shipInfo.price}</p>
           <div className='remove-btn'>
         <button onClick={this.removeHandler} className="remove-button">Remove</button>
         </div>
@@ -111,7 +74,7 @@ class CartItems extends Component {
 
           <div className='cartItem-quantity '>
           <form onChange={this.onChangeHandler} onSubmit={this.onSubmitHandler}>
-            <p>Quantity: {ship.quantity}</p>
+            <p className='color'>Quantity: {ship.quantity}</p>
             <input name='quantity' value={this.state.quantity}/>
 
               <button> Confirm Quantity </button>

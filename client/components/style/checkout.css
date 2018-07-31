@@ -1,0 +1,53 @@
+.StripeElement {
+  width: 40%;
+  float: left;
+  position: relative;
+  top: 50%;
+  transform: perspective(1px) translateY(-50%);
+}
+
+.title-checkout{
+  color: white;
+  text-align: center;
+}
+
+.title-checkout-success{
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}
+
+.checkout-button{
+  position: relative;
+  background-color:green; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 60px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 57px 19px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.checkout-button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.checkout-success-back{
+  position: fixed;
+  top: 35%;
+  left:39%;
+  font: bold 21px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: rgb(0, 17, 255);
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}

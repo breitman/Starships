@@ -11,6 +11,20 @@ import './style/shipCard.css'
 
 import React, { Component } from 'react'
 
+const button = (user, ship) => {
+    return (
+      <button onClick={()=>{
+        let qty =  JSON.parse(localStorage.getItem(ship.id))
+        if(qty) {
+          localStorage.setItem(ship.id, qty + 1);
+        } else {
+          localStorage.setItem(ship.id, 1);
+        }
+        console.log(localStorage.getItem(ship.id))
+      }}  className="button button2">Add to cart</button>
+    )
+}
+
 class ShipCard extends Component {
 
 
@@ -28,12 +42,12 @@ class ShipCard extends Component {
   render() {
     console.log(this.props)
     const ship = this.props.ship
-
+    const user = this.props.user
     return (
       <div className='card'>
     <Link to={`/starships/${ship.id}`} >
         <div className='shipName'>
-        <h2><b>{ship.name}</b></h2>
+        <h2 className='color'><b>{ship.name}</b></h2>
         </div>
 
         <div className='img-holder'>
@@ -41,22 +55,15 @@ class ShipCard extends Component {
         </div>
 
         <div className='ship-info' >
-          <p>Model : {ship.model}</p>
-          <p> Price : {ship.price} </p>
+          <h4 className='color'>Model : {ship.model}</h4>
+          <h4 className='color'> Price : {ship.price} </h4>
         </div>
       </Link>
 
         <div className='ship-info'>
-        <button onClick={()=>this.addingToCart(ship.id)}  className="button button2">Add to cart</button>
-        <button onClick={()=>{
-          let qty =  JSON.parse(localStorage.getItem(ship.id))
-          if(qty) {
-            localStorage.setItem(ship.id, qty + 1);
-          } else {
-            localStorage.setItem(ship.id, 1);
-          }
-        }}  className="button button2">Add to cart</button>
-
+        {(Object.keys(user).length === 0)? button(user, ship)
+        :<button onClick={()=>this.addingToCart(ship.id)}  className="button button2">Add to cart</button>}
+        
         <button onClick={()=>this.addingToWishList(ship.id)}  className="button button2">Add to wishlist</button>
         </div>
 
@@ -67,15 +74,8 @@ class ShipCard extends Component {
   }
 }
 const mapStateToProps = state =>{
-  console.log(state)
-  if(state.user) {
-    return {
-      user : state.user
-    }
-  } else {
-    return {
-      user : state.session.user
-    }
+  return {
+    user : state.user
   }
   
 }

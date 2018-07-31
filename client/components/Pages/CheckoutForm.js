@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
 import CheckoutSummaryCard from '../cards/CheckoutSummaryCard'
 import {Link} from 'react-router-dom'
+import '../style/checkout.css'
 
 class CheckoutForm extends Component {
     constructor(props) {
@@ -27,17 +28,31 @@ class CheckoutForm extends Component {
         if (this.state.complete){
             return (
                 <div>
-                    <h1>Purchase Complete</h1>
-                    <Link to='/home' >Back To Shopping</Link>
+                    <h1 className='title-checkout'>Purchase Complete</h1>
+                    <Link className='checkout-success-back' to='/home' >Back To Shopping</Link>
                 </div>
             )
         }
         return (
         <div className="checkout">
-            <p>Would you like to complete the purchase?</p>
+            <p className='title-checkout'>Would you like to complete the purchase?</p>
             <CheckoutSummaryCard isCheckout={false} subtotal={this.props.subtotal} shipCount={this.props.shipCount}/>
-            <CardElement />
-            <button onClick={this.submit}>Confirm Purchase</button>
+            <div className='row'>
+                <div className='col-4'>
+                    <CardElement className='StripeElement' style =
+                    {{base: {
+                            color: 'white',
+                            fontSize: '30px',
+                            color: "white",
+                            fontSmoothing: 'antialiased',
+                            '::placeholder': {
+                              color: '#ccc',
+                            }
+                        }
+                    }}/>
+                </div>
+            </div>
+            <button className='checkout-button' onClick={this.submit}>Confirm Purchase</button>
         </div>
         );
     }

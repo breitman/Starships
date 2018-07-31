@@ -15,7 +15,7 @@ class ShipList extends Component {
     return (
       <div>
         <div className='center'>
-        <h1>StarShips</h1>
+        <h1 className='allShip-Header' > StarShips</h1>
 
         </div>
         <div className='card-holder'>
@@ -35,7 +35,6 @@ class ShipList extends Component {
 const mapStateToProps = (state) => {
   return {
     ships: state.ship.ships,
-    sessionUser: state.session.user
   }
 }
 
