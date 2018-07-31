@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react'
-import CartItem from '../cards/CartItems'
+import {CartItem, CartItemForGuest} from '../cards/CartItems'
 import {getCart, getSubtotal} from '../../store/cart/thunk'
 require('../style/cart.css')
 import Summary from '../forms/summary'
+
 
 class CartPage extends Component {
 
@@ -22,6 +23,8 @@ class CartPage extends Component {
   }
 
   render() {
+    const user = this.props.user
+    console.log(user)
 
     const shipCount = (this.props.shipCount)
     const subtotal = (this.props.subtotal)
@@ -50,13 +53,15 @@ class CartPage extends Component {
             <hr />
 
             <div className='ship-list '>
-            {
-              Usercart.map((item,index)=>{
-                return (
-                  <CartItem userId={this.props.user.id} key={index} ship={item}/>
-                )
-              })
-            }
+            {console.log((Object.keys(user).length === 0))}
+            { !user.id ?<h1>guset cart </h1> :(Usercart.map((item,index)=>{
+              return (
+                <CartItem userId={this.props.user.id} key={index} ship={item}/>
+              )
+            })) 
+              }
+              
+            
             </div>
 
 
