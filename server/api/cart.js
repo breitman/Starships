@@ -5,6 +5,7 @@ module.exports = router
 
 //GET all ships
 router.get('/:id', async (req, res, next) => {
+  console.log('user side', req.user.id)
   try {
     const response = await Cart.findAll({
       include : [{model : Ship}],
