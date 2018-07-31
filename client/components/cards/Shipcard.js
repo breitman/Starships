@@ -47,7 +47,6 @@ class ShipCard extends Component {
   }
 
   render() {
-    console.log(this.props)
     const ship = this.props.ship
     const user = this.props.user
     return (

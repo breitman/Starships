@@ -16,6 +16,20 @@ const showLocalStorage = () => {
   return cartObj
 }
 
+const guestSummaryFunc = (ships,guestCart, GuestShip) =>{
+  let totalCount = 0;
+  let totalPrice = 0;
+  ships.forEach((ship)=>{
+
+      totalCount += Number(guestCart[ship])
+      totalPrice += GuestShip[ship - 1].price * Number(guestCart[ship])
+  })
+  return {
+    totalCount,
+    totalPrice
+  }
+}
+
 class CartPage extends Component {
 
   // constructor(props){
@@ -38,6 +52,8 @@ class CartPage extends Component {
     })
     return result
   }
+
+
   
 
   render() {
@@ -47,13 +63,19 @@ class CartPage extends Component {
     const guestCart = showLocalStorage()
     const guestUserCart =  Object.keys(showLocalStorage())
     const GuestShip = this.gettingGuestShip(guestUserCart,ships)
+    
+    
 
-
+    // console.log(guestSummary)
     const user = this.props.user
     const shipCount = (this.props.shipCount)
     const subtotal = (this.props.subtotal)
     const Usercart = this.props.cart
-    console.log("guest ships", guestUserCart)
+
+    const guestSubTotal = guestSummaryFunc(guestUserCart,guestCart, GuestShip)
+    console.log(guestUserCart)
+    console.log(GuestShip)
+    console.log("guest ships", guestSubTotal)
     return (
       <div className='cart'>
       <div className='products'>
@@ -83,6 +105,7 @@ class CartPage extends Component {
                     )
                   })
                 }
+                
               </div>
               : <div className='ship-list'>
 
@@ -100,7 +123,14 @@ class CartPage extends Component {
             }
           </div>
         </div>
-        <CheckoutSummaryCard isCheckout={true}subtotal={subtotal} shipCount={shipCount}/>
+        {this.props.isLoggedIn ?
+          <CheckoutSummaryCard isCheckout={true} subtotal={subtotal} shipCount={shipCount}/>
+
+        :
+       <CheckoutSummaryCard isCheckout={true} subtotal={guestSubTotal.totalPrice} shipCount={guestSubTotal.totalCount}/>
+
+
+        }
       </div>
     )
   }
