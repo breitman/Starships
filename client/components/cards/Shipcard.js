@@ -11,6 +11,20 @@ import './style/shipCard.css'
 
 import React, { Component } from 'react'
 
+const button = (user, ship) => {
+    return (
+      <button onClick={()=>{
+        let qty =  JSON.parse(localStorage.getItem(ship.id))
+        if(qty) {
+          localStorage.setItem(ship.id, qty + 1);
+        } else {
+          localStorage.setItem(ship.id, 1);
+        }
+        console.log(localStorage.getItem(ship.id))
+      }}  className="button button2">Add to cart</button>
+    )
+}
+
 class ShipCard extends Component {
 
 
@@ -47,19 +61,9 @@ class ShipCard extends Component {
       </Link>
 
         <div className='ship-info'>
-        {!user ? (<button onClick={()=>this.addingToCart(ship.id)}  className="button button2">Add to cart</button>
-        ): (
-          <button onClick={()=>{
-            let qty =  JSON.parse(localStorage.getItem(ship.id))
-            if(qty) {
-              localStorage.setItem(ship.id, qty + 1);
-            } else {
-              localStorage.setItem(ship.id, 1);
-            }
-          }}  className="button button2">Add to cart</button>
-        )}
+        {(Object.keys(user).length === 0)? button(user, ship)
+        :<button onClick={()=>this.addingToCart(ship.id)}  className="button button2">Add to cart</button>}
         
-
         <button onClick={()=>this.addingToWishList(ship.id)}  className="button button2">Add to wishlist</button>
         </div>
 
@@ -70,15 +74,8 @@ class ShipCard extends Component {
   }
 }
 const mapStateToProps = state =>{
-  console.log(state)
-  if(state.user) {
-    return {
-      user : state.user
-    }
-  } else {
-    return {
-      user : state.session.user
-    }
+  return {
+    user : state.user
   }
   
 }
