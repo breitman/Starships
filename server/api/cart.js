@@ -11,7 +11,7 @@ router.get('/:id', async (req, res, next) => {
       include : [{model : Ship}],
       where : {userId : req.params.id}
     });
-
+    console.log('get response',response)
     res.json(response);
   } catch (error) { next(error) }
 });

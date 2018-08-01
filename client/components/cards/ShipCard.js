@@ -42,8 +42,7 @@ class ShipCard extends Component {
   }
 
   addingToWishList(shipId){
-    this.props.me()
-    this.props.putInWishList(shipId, this.props.user)
+    this.props.addWish(shipId)
   }
 
   render() {
@@ -91,7 +90,7 @@ const mapDispatchToProps = dispatch =>{
 
     putInCart: (shipId, user) => dispatch(putInCart(shipId, user.id)),
     me : ()=> dispatch(me()),
-    putInWishList: (shipId, user) => dispatch(addWish(shipId, user.id))
+    addWish: (shipId) => dispatch(addWish(shipId))
   }
 }
 

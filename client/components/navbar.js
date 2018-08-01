@@ -53,7 +53,7 @@ class Navbar extends Component {
             <Menu.Item as ={Link} to='/starships'>All Ships</Menu.Item>
             <Menu.Item as ={Link} to='/cart' position='right'>Cart</Menu.Item>
             <Dropdown icon='user' text='Account' className='link item' position='right'>
-              <Dropdown.Menu clasName='dropdown'>
+              <Dropdown.Menu className='dropdown'>
                 <Dropdown.Item as={Link} text='Log In' to='/login' />
                 <Dropdown.Item text='Sign Up' as={Link} to='/signup'/>
               </Dropdown.Menu>

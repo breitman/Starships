@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { INSPECT_MAX_BYTES } from 'buffer';
 
 //actions
 export const GET_WISH_LIST = 'GET_WISH_LIST';
@@ -10,31 +11,42 @@ export const fetchWishList = wishes => ({ type: GET_WISH_LIST, payload: wishes }
 
 export const addToWishList = wish => ({ type: ADD_TO_WISH_LIST, payload: wish });
 
-export const deleteWish = shipId => ({ type: DELETE_WISH, payload: shipId });
+// export const deleteWish = shipId => ({ type: DELETE_WISH, payload: shipId });
 
 
 //thunk creators
-export const fetchWishes = (userId) => {
+export const fetchWishes = () => {
   return async dispatch => {
-  const res = await axios.get(`/api/wishlist/${userId}`);
-  dispatch(fetchWishList(res.data));
+    try {
+      const {data} = await axios.get(`/api/wishlist`);
+      dispatch(fetchWishList(data));
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
-export const addWish = (shipId, userId) => {
+export const addWish = (shipId) => {
   return async dispatch => {
-    const res = await axios.post('/api/wishlist', {
-      starshipId: shipId,
-      userId
-    });
-    dispatch(addWish(res.data));
+    try {
+      const {data} = await axios.post('/api/wishlist',{shipId});
+      // dispatch(addWish(data));
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 }
 
 export const removeWish = shipId => {
   return async dispatch => {
-    await axios.delete(`/api/wishlist/${shipId}`);
-    dispatch(removeWish(shipId));
+    try {
+      await axios.delete(`/api/wishlist/${shipId}`);
+      const {data} = await axios.get(`/api/wishlist`)
+      dispatch(fetchWishes(data));
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 

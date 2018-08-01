@@ -2,35 +2,40 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import WishListItems from '../cards/WishListItems';
 import { fetchWishes } from '../../store/wishList';
-require('../style/cart.css');
+require('../style/wishListPage.css');
 
 class WishListPage extends Component {
 
   componentDidMount() {
-    this.props.fetchWishes(this.props.user.id);
+    this.props.fetchWishes();
   }
 
   render() {
-    console.log('props', this.props.wishList)
-    //const userWishList = this.props.wishList;
-
+    const Wishes = this.props.wishList
+    console.log(Wishes)
     return (
-      <div className='cart'>
-        <div className='products'>
-            <h1> Your Wish List </h1>
+      <div className='wish'>
+      <h1 className='center'> Wishlist </h1>
+      <div className='title'>
+      <hr />
+        <div className='wish-picture '> 
+        <h3> Pictures </h3>
+        </div>
+        
+        <div className='wish-info '>
+          <h3> information </h3>
+        </div>
+      <hr />
+      </div>
 
-            <div className='list-item-cal'>
-            <hr />
-
-              <div className='list-item'>
-              <p>Item</p>
-              </div>
-
-              <div className='list-price'>
-              <p>Price</p>
-              </div>
-
-            </div>
+        <div> 
+          {
+            Wishes.map((ship,index)=>{
+              return(
+                <WishListItems key={index} ship={ship}/>
+              )
+            })
+          }
         </div>
       </div>
     )
@@ -39,15 +44,15 @@ class WishListPage extends Component {
 
 const mapStateToProps = state => {
   console.log('state.wishReducer', state)
+  
   return {
-    wishList: state.wishReducer.wishList,
-    user: state.user
+    wishList: state.wishReducer
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchWishes: userId => (dispatch(fetchWishes(userId)))
+    fetchWishes: () => (dispatch(fetchWishes()))
   }
 }
 
@@ -55,11 +60,3 @@ export default connect(mapStateToProps, mapDispatchToProps)(WishListPage);
 
 
 // <div className='ship-list '>
-// {
-//   userWishList.map((item, index) => {
-//     return (
-//       <WishListItems userId={this.props.user.id} key={index} ship={item} />
-//     )
-//   })
-// }
-// </div>
