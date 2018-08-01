@@ -25,7 +25,7 @@ class HomePage extends Component {
       <div>
         <h3 className='product-title'>StarShips</h3>
         <p className='description-product'>Shop for the best starships in the Galaxy today!</p>
-        <h5>Featured StarShips</h5>
+        <h5 className='featured-title'>Featured StarShips:</h5>
         {featuredShips.map((ship) => (
           <ShipCard ship={ship} key={ship.id}/>
         ))}

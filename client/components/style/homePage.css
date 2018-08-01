@@ -19,6 +19,11 @@ p{
   font-size: 40px;
 }
 
+.featured-title{
+  color: white;
+  font-size:30px;
+}
+
 .view-all{
   font: bold 21px Arial;
   text-decoration: none;

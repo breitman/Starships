@@ -21,7 +21,11 @@ class CheckoutForm extends Component {
             body: token.id
             });
 
-            if (response.ok) this.setState({complete: true});
+            if (response.ok) {
+                this.setState({complete: true});
+                localStorage.clear();
+            }
+
         }
 
     render() {
