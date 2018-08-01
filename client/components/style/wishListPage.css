@@ -1,0 +1,25 @@
+.wish {
+    width: 100%;
+    /* background-color: aqua; */
+}
+.title {
+    width: 100%;
+    
+}
+
+.wish-picture {
+    width: 30%;
+    /* background-color: blue; */
+    display: inline-block;
+    text-align: center
+}
+.wish-info {
+    width: 70%;
+
+    /* background-color: blueviolet; */
+    display: inline-block;
+    text-align: center
+}
+.center {
+    text-align: center;
+}

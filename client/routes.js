@@ -53,6 +53,7 @@ class Routes extends Component {
             <Route exact path='/starships/:id/addreview' component={AddReview}/>
             <Route path="/cart" component={CartPage} />
             <Route path='/checkout' component={CheckoutForm} />
+            <Route path='/wishlist' component={WishListPage} />
           </Switch>
         )}
 
@@ -60,7 +61,7 @@ class Routes extends Component {
         <Switch>
           <Route exact path="/home" component={HomePage} />
           <Route path='/users/:userId' component={UserHome} />
-          <Route path='/wishlist' component={WishListPage} />
+          
         </Switch>
         {/* Displays our Login component as a fallback */}
         <Redirect to= '/home'/>
