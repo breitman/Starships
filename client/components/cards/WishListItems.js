@@ -1,56 +1,34 @@
-import { React, Component } from 'react';
-import { connect } from 'react-redux';
-import { removeShip } from '../../store/cart/thunk';
-require('./style/CartItems.css');
+
+import {removeWish} from '../../store/wishList'
+import React, { Component } from 'react'
+import {connect} from 'react-redux'
+require('../style/wishListPage.css')
 
 class WishListItems extends Component {
-  constructor(props) {
-    super(props);
-    this.removeHandler = this.removeHandler.bind(this);
+  constructor(props){
+    super(props)
+    this.removeHandler = this.removeHandler.bind(this)
   }
 
-  removeHandler(event) {
-    event.preventDefault();
-    this.props.removeShip(this.props.ship.starship.id, this.props.userId);
+  removeHandler(evt){
+    evt.preventDefault()
+    this.props.removeWish(this.props.ship.starship.id)
   }
-
   render() {
-    const shipInfo = this.props.ship.starship;
-
+    const ship = this.props.ship.starship
     return (
       <div>
-        <hr />
-        <div className='container-ships'>
-          <div className='container-ships-item '>
-            <div className='container-ships-img'>
-              <img src={shipInfo.imageUrl} />
-            </div>
-
-            <div className='container-ships-info '>
-              <p>Name: {shipInfo.name}</p>
-              <p>Model: {shipInfo.model}</p>
-              <p>manufacturer: {shipInfo.manufacturer}</p>
-            </div>
-
-          </div>
-          <div className='container-ships-price'>
-            <p> ${shipInfo.price}</p>
-          </div>
-        </div>
-
-        <div className='remove-btn'>
-          <button onClick={this.removeHandler} className="remove-button">Remove</button>
-        </div>
-        <hr />
+        <h1> {ship.name} </h1>
+        <button onClick={this.removeHandler}> Remove </button>
       </div>
     )
   }
 }
 
-export const MapDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
-    removeShip: (shipId, userId) => (dispatch(removeShip(shipId, userId)))
+    removeWish : (shipId) => (dispatch(removeWish(shipId)))
   }
 }
 
-export default connect(null, MapDispatchToProps)(WishListItems);
+export default connect(null,mapDispatchToProps)(WishListItems)
