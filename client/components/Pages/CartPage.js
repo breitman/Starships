@@ -15,6 +15,12 @@ const showLocalStorage = () => {
   }
   return cartObj
 }
+const gettingGuestShip =(objArr,ships) =>{
+  const result = ships.filter((ship,index)=>{
+    return objArr.includes(ship.id + "")
+  })
+  return result
+}
 
 const guestSummaryFunc = (ships,guestCart, GuestShip) =>{
   let totalCount = 0;
@@ -22,6 +28,7 @@ const guestSummaryFunc = (ships,guestCart, GuestShip) =>{
   ships.forEach((ship)=>{
 
       totalCount += Number(guestCart[ship])
+      console.log(GuestShip)
       totalPrice += GuestShip[ship - 1].price * Number(guestCart[ship])
   })
   return {
@@ -29,6 +36,8 @@ const guestSummaryFunc = (ships,guestCart, GuestShip) =>{
     totalPrice
   }
 }
+
+
 
 class CartPage extends Component {
 
@@ -41,17 +50,10 @@ class CartPage extends Component {
 
   componentDidMount() {
     this.props.getCart(this.props.user.id)
-    this.setState({
-      userCart : this.props.cart
-    })
+    
   }
 
-  gettingGuestShip(objArr,ships){
-    const result = ships.filter((ship,index)=>{
-      return objArr.includes(ship.id + "")
-    })
-    return result
-  }
+  
 
 
   
@@ -59,10 +61,10 @@ class CartPage extends Component {
   render() {
     console.log('this is cart page object',showLocalStorage())
     const ships = this.props.ships
-
+    
     const guestCart = showLocalStorage()
     const guestUserCart =  Object.keys(showLocalStorage())
-    const GuestShip = this.gettingGuestShip(guestUserCart,ships)
+    const GuestShip = gettingGuestShip(guestUserCart,ships)
     
     
 
@@ -73,9 +75,7 @@ class CartPage extends Component {
     const Usercart = this.props.cart
 
     const guestSubTotal = guestSummaryFunc(guestUserCart,guestCart, GuestShip)
-    console.log(guestUserCart)
-    console.log(GuestShip)
-    console.log("guest ships", guestSubTotal)
+    console.log(localStorage)
     return (
       <div className='cart'>
       <div className='products'>
